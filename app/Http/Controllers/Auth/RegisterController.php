@@ -22,7 +22,23 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
+    use RegistersUsers {
+        redirectPath as laravelRedirectPath;
+    }
+
+    /**
+     * Get the post register redirect path.
+     *
+     * @return string
+     */
+    public function redirectPath()
+    {
+        // Do your logic to flash data to session...
+        session()->flash('status', __('customMessage.registered'));
+
+        // Return the results of the method we are overriding that we aliased.
+        return $this->laravelRedirectPath();
+    }
 
     /**
      * Where to redirect users after registration.
