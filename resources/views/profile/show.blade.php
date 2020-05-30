@@ -7,12 +7,12 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="card">
                     <div class="card-header">{{ __('title.profile.my') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('profile.update') }}">
+                        <form method="POST" action="{{ route('profile.edit') }}">
                             @csrf
 
                             <div class="form-group row">

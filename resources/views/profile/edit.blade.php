@@ -7,12 +7,12 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="card">
                     <div class="card-header">{{ __('title.profile.edit') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('profile.update') }}">
+                        <form method="POST" action="{{ route('profile.edit') }}">
                             @csrf
 
                             <div class="form-group row">
@@ -39,7 +39,7 @@
                                 <div class="col-md-6">
                                     <input id="password" type="password"
                                            class="form-control @error('password') is-invalid @enderror" name="password"
-                                           required autocomplete="new-password">
+                                           autocomplete="new-password">
 
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -55,7 +55,7 @@
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
-                                           name="password_confirmation" required autocomplete="new-password">
+                                           name="password_confirmation" autocomplete="new-password">
                                 </div>
                             </div>
 
@@ -134,7 +134,7 @@
 
                                 <div class="col-md-6">
                                 <textarea id="skills" class="form-control @error('skills') is-invalid @enderror"
-                                          name="skills" required autocomplete="skills"
+                                          name="skills" rows="10" required autocomplete="skills"
                                           autofocus>{{ Auth::user()->skills }}</textarea>
 
                                     @error('skills')
@@ -175,6 +175,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('button.submit.profile.update') }}
                                     </button>
+                                    <a href="{{ url('/') }}" id="cancel" name="cancel" class="btn btn-default">{{ __('button.cancel') }}</a>
                                 </div>
                             </div>
                             @if(session('message'))

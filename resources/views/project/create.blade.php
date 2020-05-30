@@ -7,12 +7,12 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="card">
                     <div class="card-header">{{ __('title.project.create') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('project.store') }}">
+                        <form method="POST" action="{{ route('project.create') }}">
                             @csrf
 
                             <div class="form-group row">
@@ -33,7 +33,7 @@
                                 <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('field.project.description') }}</label>
 
                                 <div class="col-md-6">
-                                    <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" required autocomplete="description" autofocus>{{ old('description') }}</textarea>
+                                    <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" rows="10" required autocomplete="description" autofocus>{{ old('description') }}</textarea>
 
                                     @error('description')
                                     <span class="invalid-feedback" role="alert">

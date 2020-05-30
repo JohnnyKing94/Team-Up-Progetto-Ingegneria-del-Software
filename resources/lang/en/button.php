@@ -12,6 +12,7 @@ return [
             'update' => 'Update',
         ],
     ],
+    'cancel' => 'Cancel',
     'toggleNavigation' => 'Toggle navigation',
     'forgotYourPassword' => 'Forgot Your Password?',
     'reset' => 'Reset',

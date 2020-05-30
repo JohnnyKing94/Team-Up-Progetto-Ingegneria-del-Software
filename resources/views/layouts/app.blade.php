@@ -33,6 +33,13 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+                    @guest
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/') }}">{{ __('menu.home') }}</a>
+                        </li>
+                    </ul>
+                    @else
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/') }}">{{ __('menu.home') }}</a>
@@ -41,6 +48,7 @@
                             <a class="nav-link" href="{{ route('project.index') }}">{{ __('menu.project.index') }}</a>
                         </li>
                     </ul>
+                   @endguest
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">

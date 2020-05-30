@@ -52,6 +52,9 @@
                                         {{ __('field.user.rememberMe') }}
                                     </label>
                                 </div>
+                                @if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">{{ __('button.forgotYourPassword') }}</a>
+                                @endif
                             </div>
                         </div>
 
@@ -60,12 +63,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('button.submit.login') }}
                                 </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('button.forgotYourPassword') }}
-                                    </a>
-                                @endif
+                                <a href="{{ url('/') }}" id="cancel" name="cancel" class="btn btn-default">{{ __('button.cancel') }}</a>
                             </div>
                         </div>
                     </form>

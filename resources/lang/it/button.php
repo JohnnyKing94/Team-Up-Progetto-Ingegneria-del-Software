@@ -12,6 +12,7 @@ return [
             'update' => 'Aggiorna',
         ],
     ],
+    'cancel' => 'Annulla',
     'toggleNavigation' => 'Attiva/Disattiva navigazione',
     'forgotYourPassword' => 'Password Dimenticata?',
     'reset' => 'Reimposta',

@@ -34,7 +34,9 @@
                                         <td><a href="{{ route('project.show', $projectLeader->slug) }}"><i
                                                     class="far fa-eye"></i></a> <a
                                                 href="{{ route('project.edit', $projectLeader->slug) }}"><i
-                                                    class="far fa-edit"></i></a></td>
+                                                    class="far fa-edit"></i></a> <a
+                                                href="{{ route('project.delete', $projectLeader->slug) }}"><i
+                                                    class="fas fa-times"></i></a></td>
                                     </tr>
                                 @endforeach
                                 </tbody>

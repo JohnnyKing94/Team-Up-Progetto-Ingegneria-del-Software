@@ -6,4 +6,5 @@ return [
     'profileUpdated' => 'Profilo aggiornato!',
     'projectCreated' => 'Progetto creato!',
     'projectUpdated' => 'Progetto aggiornato!',
+    'projectDeleted' => 'Progetto rimosso!',
 ];

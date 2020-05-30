@@ -19,10 +19,6 @@ class User extends Authenticatable
         'email', 'password', 'name', 'surname', 'gender', 'birthday', 'skills', 'interests'
     ];
 
-    public function getInterestAttribute($value) {
-        return explode(',', $value);
-    }
-
     /**
      * The attributes that should be hidden for arrays.
      *

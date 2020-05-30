@@ -16,37 +16,56 @@ class ProfileController extends Controller
         return view('profile.show');
     }
 
-    public function edit()
+    public function edit(Request $request)
     {
-        return view('profile.edit');
-    }
+        if ($request->isMethod('get')) {
+            return view('profile.edit');
+        }
+        if ($request->isMethod('post')) {
+            $id = auth()->user()->id;
 
-    public function update(Request $request)
-    {
-        $id = auth()->user()->id;
-        Validator::make($request->all(), [
-            'email' => ['required', 'string', 'email', 'max:255',  Rule::unique('users')->ignore($id)],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'name' => ['required', 'string', 'max:255'],
-            'surname' => ['required', 'string', 'max:255'],
-            'gender' => ['required', 'string', 'max:50'],
-            'birthday' => ['required', 'date'],
-            'skills' => ['required', 'string'],
-            'interests' => ['required', 'array']
-        ])->validate();
+            if (!$request->has('password')) {
+                $request->except(['password']);
+            }
 
-        User::where('id', $id)->update([
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-            'name' => $request['name'],
-            'surname' => $request['surname'],
-            'gender' => $request['gender'],
-            'birthday' => $request['birthday'],
-            'skills' =>  $request['skills'],
-            'interests' => implode(',',$request['interests']),
-        ]);
+            Validator::make($request->all(), [
+                'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($id)],
+                'password' => ['nullable', 'min:8', 'confirmed'],
+                'name' => ['required', 'string', 'max:255'],
+                'surname' => ['required', 'string', 'max:255'],
+                'gender' => ['required', 'string', 'max:50'],
+                'birthday' => ['required', 'date'],
+                'skills' => ['required', 'string'],
+                'interests' => ['required', 'array']
+            ])->validate();
 
-        return redirect()->back()
-            ->with('message', __('customMessage.profileUpdated'));
+            $data = $request->all();
+
+            if (empty($data['password'])) {
+                User::where('id', $id)->update([
+                    'email' => $request['email'],
+                    'name' => $request['name'],
+                    'surname' => $request['surname'],
+                    'gender' => $request['gender'],
+                    'birthday' => $request['birthday'],
+                    'skills' => $request['skills'],
+                    'interests' => implode(',', $request['interests']),
+                ]);
+            } else {
+                User::where('id', $id)->update([
+                    'email' => $request['email'],
+                    'password' => Hash::make($request['password']),
+                    'name' => $request['name'],
+                    'surname' => $request['surname'],
+                    'gender' => $request['gender'],
+                    'birthday' => $request['birthday'],
+                    'skills' => $request['skills'],
+                    'interests' => implode(',', $request['interests']),
+                ]);
+            }
+
+            return redirect()->back()
+                ->with('message', __('customMessage.profileUpdated'));
+        }
     }
 }

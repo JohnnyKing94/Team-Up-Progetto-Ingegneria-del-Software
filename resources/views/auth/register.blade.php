@@ -7,7 +7,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
                 <div class="card-header">{{ __('title.register') }}</div>
 
@@ -115,7 +115,7 @@
                             <label for="skills" class="col-md-4 col-form-label text-md-right">{{ __('field.user.skills') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="skills" class="form-control @error('skills') is-invalid @enderror" name="skills" required autocomplete="skills" autofocus>{{ old('skills') }}</textarea>
+                                <textarea id="skills" class="form-control @error('skills') is-invalid @enderror" name="skills" rows="10" required autocomplete="skills" autofocus>{{ old('skills') }}</textarea>
 
                                 @error('skills')
                                 <span class="invalid-feedback" role="alert">
@@ -155,6 +155,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('button.submit.register') }}
                                 </button>
+                                <a href="{{ url('/') }}" id="cancel" name="cancel" class="btn btn-default">{{ __('button.cancel') }}</a>
                             </div>
                         </div>
                     </form>
