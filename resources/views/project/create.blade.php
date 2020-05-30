@@ -70,6 +70,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('button.submit.project.create') }}
                                     </button>
+                                    <a href="{{ url('/') }}" id="cancel" name="cancel" class="btn btn-default">{{ __('button.cancel') }}</a>
                                 </div>
                             </div>
                         </form>

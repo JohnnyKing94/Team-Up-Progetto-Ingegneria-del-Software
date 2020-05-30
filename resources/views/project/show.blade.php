@@ -5,8 +5,27 @@
 @endsection
 
 @section('content')
+    <!-- Modal -->
+    <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteLabel">Conferma rimozione</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Sei sicuro di voler rimuovere questo progetto?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annula</button>
+                    <a href="{{ route('project.delete', $detailProject->slug) }}" type="button" class="btn btn-primary">Conferma</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container">
-
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -65,8 +84,8 @@
                                         </a>
                                         <a href="{{ route('project.edit', $detailProject->slug) }}" class="btn btn-info btn-lg btn-block">Modifica Progetto
                                         </a>
-                                        <a href="{{ route('project.delete', $detailProject->slug) }}" class="btn btn-info btn-lg btn-block">Rimuovi Progetto
-                                        </a>
+                                        <button class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#confirmDelete">Rimuovi Progetto
+                                        </button>
                                         <a href="#" class="btn btn-info btn-lg btn-block">Promuovi
                                         </a>
                                     </div>
