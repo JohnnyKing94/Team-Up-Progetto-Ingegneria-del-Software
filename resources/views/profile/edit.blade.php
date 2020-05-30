@@ -17,7 +17,7 @@
 
                             <div class="form-group row">
                                 <label for="email"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('field.email') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('field.user.email') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
@@ -34,7 +34,7 @@
 
                             <div class="form-group row">
                                 <label for="password"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('field.password') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('field.user.password') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
@@ -51,7 +51,7 @@
 
                             <div class="form-group row">
                                 <label for="password-confirm"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('field.confirmPassword') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('field.user.confirmPassword') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
@@ -60,7 +60,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('field.name') }}</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('field.user.name') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
@@ -77,7 +77,7 @@
 
                             <div class="form-group row">
                                 <label for="surname"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('field.surname') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('field.user.surname') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="surname" type="text"
@@ -94,7 +94,7 @@
 
                             <div class="form-group row">
                                 <label for="birthday"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('field.birthday') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('field.user.birthday') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="birthday" type="date"
@@ -111,7 +111,7 @@
 
                             <div class="form-group row">
                                 <label for="gender"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('field.gender') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('field.user.gender') }}</label>
 
                                 <div class="col-md-6">
                                     <select id="gender" class="form-control @error('gender') is-invalid @enderror" name="gender" required autocomplete="gender" autofocus>
@@ -130,7 +130,7 @@
 
                             <div class="form-group row">
                                 <label for="skills"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('field.skills') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('field.user.skills') }}</label>
 
                                 <div class="col-md-6">
                                 <textarea id="skills" class="form-control @error('skills') is-invalid @enderror"
@@ -147,10 +147,10 @@
 
                             <div class="form-group row">
                                 <label for="interests"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('field.interests') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('field.user.interests') }}</label>
 
                                 <div class="col-md-6">
-                                    <label>{{ __('field.selectMultipleInterests') }}</label>
+                                    <label>{{ __('field.user.selectMultipleInterests') }}</label>
                                     <select id="interests" multiple class="form-control @error('interests') is-invalid @enderror" name="interests[]" required autocomplete="interests" autofocus>
                                         @php
                                             $interests = explode(',', Auth::user()->interests);
@@ -173,14 +173,14 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('button.update') }}
+                                        {{ __('button.submit.profile.update') }}
                                     </button>
                                 </div>
                             </div>
-                            @if(session('success'))
+                            @if(session('message'))
                                 <br />
                                 <div class="alert alert-success">
-                                    {{session('success')}}
+                                    {{session('message')}}
                                 </div>
                             @endif
                         </form>

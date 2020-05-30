@@ -16,7 +16,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('field.email') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('field.user.email') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('field.password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('field.user.password') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
@@ -44,7 +44,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('field.confirmPassword') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('field.user.confirmPassword') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
@@ -52,7 +52,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('field.name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('field.user.name') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -66,7 +66,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="surname" class="col-md-4 col-form-label text-md-right">{{ __('field.surname') }}</label>
+                            <label for="surname" class="col-md-4 col-form-label text-md-right">{{ __('field.user.surname') }}</label>
 
                             <div class="col-md-6">
                                 <input id="surname" type="text" class="form-control @error('surname') is-invalid @enderror" name="surname" value="{{ old('surname') }}" required autocomplete="surname" autofocus>
@@ -80,7 +80,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="birthday" class="col-md-4 col-form-label text-md-right">{{ __('field.birthday') }}</label>
+                            <label for="birthday" class="col-md-4 col-form-label text-md-right">{{ __('field.user.birthday') }}</label>
 
                             <div class="col-md-6">
                                 <input id="birthday" type="date" class="form-control @error('birthday') is-invalid @enderror" name="birthday" value="{{ old('birthday') }}" required autocomplete="birthday" autofocus>
@@ -94,7 +94,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('field.gender') }}</label>
+                            <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('field.user.gender') }}</label>
 
                             <div class="col-md-6">
                                 <select id="gender" class="form-control @error('gender') is-invalid @enderror" name="gender" required autocomplete="gender" autofocus>
@@ -112,7 +112,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="skills" class="col-md-4 col-form-label text-md-right">{{ __('field.skills') }}</label>
+                            <label for="skills" class="col-md-4 col-form-label text-md-right">{{ __('field.user.skills') }}</label>
 
                             <div class="col-md-6">
                                 <textarea id="skills" class="form-control @error('skills') is-invalid @enderror" name="skills" required autocomplete="skills" autofocus>{{ old('skills') }}</textarea>
@@ -126,10 +126,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="interests" class="col-md-4 col-form-label text-md-right">{{ __('field.interests') }}</label>
+                            <label for="interests" class="col-md-4 col-form-label text-md-right">{{ __('field.user.interests') }}</label>
 
                             <div class="col-md-6">
-                                <label>{{ __('field.selectMultipleInterests') }}</label>
+                                <label>{{ __('field.user.selectMultipleInterests') }}</label>
                                 <select id="interests" multiple class="form-control @error('interests') is-invalid @enderror" name="interests[]" required autocomplete="interests" autofocus>
                                     @php
                                         $interests = ["Svago","Sport","Tecnologia","Economia","Politica", "Medicina"];
@@ -139,7 +139,7 @@
                                     <option value="Tecnologia" {{ old('interests[]') == 'Tecnologia' ? 'selected' : '' }}>Tecnologia</option>
                                     <option value="Economia" {{ old('interests[]') == 'Economia' ? 'selected' : '' }}>Economia</option>
                                     <option value="Politica" {{ old('interests[]') == 'Politica' ? 'selected' : '' }}>Politica</option>
-                                    <option value="Politica" {{ old('interests[]') == 'Medicina' ? 'selected' : '' }}>Medicina</option>
+                                    <option value="Medicina" {{ old('interests[]') == 'Medicina' ? 'selected' : '' }}>Medicina</option>
                                 </select>
 
                                 @error('interests')

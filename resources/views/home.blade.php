@@ -21,6 +21,11 @@
                             <h1 class="card-title text-center font-weight-bold">Team Up!</h1>
                         @else
                             <h1 class="card-title text-center font-weight-bold">Team Up!</h1>
+                            @if (session('message'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('message') }}
+                                </div>
+                            @endif
                     @endguest
                 </div>
             </div>

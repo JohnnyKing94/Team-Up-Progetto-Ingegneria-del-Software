@@ -73,7 +73,7 @@ class RegisterController extends Controller
             'gender' => ['required', 'string', 'max:50'],
             'birthday' => ['required', 'date'],
             'skills' => ['required', 'string'],
-            'interests' => ['required', 'array']
+            'interests' => ['required', 'array'],
         ]);
     }
 

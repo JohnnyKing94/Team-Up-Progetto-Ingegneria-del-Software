@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     'home' => 'Home',
     'resetPassword' => 'Reset Password',
     'reset' => 'Reset',
@@ -10,6 +9,16 @@ return [
     'profile' => [
         'my' => 'My Profile',
         'edit' => 'Edit Profile'
-    ]
-
+    ],
+    'project' => [
+        'index' => 'List Project',
+        'my' => [
+            'general' => 'My projects',
+            'leader' => 'Leader',
+            'teammate' => 'Teammate',
+        ],
+        'create' => 'Create Project',
+        'edit' => 'Edit Project',
+        'show' => 'Summary Page',
+    ],
 ];

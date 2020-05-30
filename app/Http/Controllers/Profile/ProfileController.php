@@ -33,7 +33,7 @@ class ProfileController extends Controller
             'birthday' => ['required', 'date'],
             'skills' => ['required', 'string'],
             'interests' => ['required', 'array']
-        ])->validate();;
+        ])->validate();
 
         User::where('id', $id)->update([
             'email' => $request['email'],
@@ -45,7 +45,8 @@ class ProfileController extends Controller
             'skills' =>  $request['skills'],
             'interests' => implode(',',$request['interests']),
         ]);
+
         return redirect()->back()
-            ->with('success', __('customMessage.profileUpdated'));
+            ->with('message', __('customMessage.profileUpdated'));
     }
 }

@@ -17,76 +17,64 @@
 
                             <div class="form-group row">
                                 <label for="email"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('field.email') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('field.user.email') }}</label>
 
-                                <div class="col-md-6 col-form-label">
-                                    <strong>{{ Auth::user()->email }}</strong>
+                                <div class="col-md-6 col-form-label font-weight-bold">
+                                    {{ Auth::user()->email }}
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="name"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('field.name') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('field.user.name') }}</label>
 
-                                <div class="col-md-6">
-                                    <div class="col-md-6 col-form-label">
-                                        <strong>{{ Auth::user()->name }}</strong>
-                                    </div>
+                                <div class="col-md-6 col-form-label font-weight-bold">
+                                    {{ Auth::user()->name }}
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="surname"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('field.surname') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('field.user.surname') }}</label>
 
-                                <div class="col-md-6">
-                                    <div class="col-md-6 col-form-label">
-                                        <strong>{{ Auth::user()->surname }}</strong>
-                                    </div>
+                                <div class="col-md-6 col-form-label font-weight-bold">
+                                    {{ Auth::user()->surname }}
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="birthday"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('field.birthday') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('field.user.birthday') }}</label>
 
-                                <div class="col-md-6">
-                                    <div class="col-md-6 col-form-label">
-                                        <strong>{{ Auth::user()->birthday }}</strong>
-                                    </div>
+                                <div class="col-md-6 col-form-label font-weight-bold">
+                                    {{ date('j F Y', strtotime(Auth::user()->birthday)) }}
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="gender"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('field.gender') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('field.user.gender') }}</label>
 
-                                <div class="col-md-6">
-                                    <div class="col-md-6 col-form-label">
-                                        <strong>{{ Auth::user()->gender }}</strong>
-                                    </div>
+                                <div class="col-md-6 col-form-label font-weight-bold">
+                                    {{ Auth::user()->gender }}
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="skills"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('field.skills') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('field.user.skills') }}</label>
 
-                                <div class="col-md-6">
-                                    <div class="col-md-6 col-form-label">
-                                        <strong>{{ Auth::user()->skills }}</strong>
-                                    </div>
+                                <div class="col-md-6 col-form-label font-weight-bold">
+                                    {{ Auth::user()->skills }}
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="interests"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('field.interests') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('field.user.interests') }}</label>
 
-                                <div class="col-md-6">
-                                    <div class="col-md-6 col-form-label">
-                                        <strong>{{ str_replace(',', ', ', Auth::user()->interests) }}</strong>
-                                    </div>
+                                <div class="col-md-6 col-form-label font-weight-bold">
+                                    {{ str_replace(',', ', ', Auth::user()->interests) }}
                                 </div>
                             </div>
                         </form>
