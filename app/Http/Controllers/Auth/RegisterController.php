@@ -34,7 +34,7 @@ class RegisterController extends Controller
     public function redirectPath()
     {
         // Do your logic to flash data to session...
-        session()->flash('status', __('customMessage.registered'));
+        session()->flash('status', __('message.registered'));
 
         // Return the results of the method we are overriding that we aliased.
         return $this->laravelRedirectPath();

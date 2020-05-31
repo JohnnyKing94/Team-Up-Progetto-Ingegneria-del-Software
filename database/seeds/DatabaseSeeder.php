@@ -20,11 +20,11 @@ class DatabaseSeeder extends Seeder
         ];
 
         $projects = [
-            [ 'name' => 'Project 1', 'description' => Lipsum::short()->text(3), 'labels' => 'Svago,Economia,Tecnologia', 'ownerid' => '1', 'slug' => 'project-1-' . Project::createProjectSlug() ],
-            [ 'name' => 'Project 2', 'description' => Lipsum::short()->text(2), 'labels' => 'Economia', 'ownerid' => '1', 'slug' => 'project-2-' . Project::createProjectSlug() ],
-            [ 'name' => 'Project 3', 'description' => Lipsum::short()->text(4), 'labels' => 'Svago,Tecnologia', 'ownerid' => '2', 'slug' => 'project-3-' . Project::createProjectSlug() ],
-            [ 'name' => 'Project 4', 'description' => Lipsum::short()->text(1), 'labels' => 'Politica,Tecnologia', 'ownerid' => '3', 'slug' => 'project-4-' . Project::createProjectSlug() ],
-            [ 'name' => 'Project 5', 'description' => Lipsum::short()->text(3), 'labels' => 'Medicina,Economia', 'ownerid' => '3', 'slug' => 'project-5-' . Project::createProjectSlug() ],
+            [ 'name' => 'Project 1', 'description' => Lipsum::short()->text(3), 'labels' => 'Svago,Economia,Tecnologia', 'owner_id' => '1', 'slug' => 'project-1-' . Project::createProjectSlug() ],
+            [ 'name' => 'Project 2', 'description' => Lipsum::short()->text(2), 'labels' => 'Economia', 'owner_id' => '1', 'slug' => 'project-2-' . Project::createProjectSlug() ],
+            [ 'name' => 'Project 3', 'description' => Lipsum::short()->text(4), 'labels' => 'Svago,Tecnologia', 'owner_id' => '2', 'slug' => 'project-3-' . Project::createProjectSlug() ],
+            [ 'name' => 'Project 4', 'description' => Lipsum::short()->text(1), 'labels' => 'Politica,Tecnologia', 'owner_id' => '3', 'slug' => 'project-4-' . Project::createProjectSlug() ],
+            [ 'name' => 'Project 5', 'description' => Lipsum::short()->text(3), 'labels' => 'Medicina,Economia', 'owner_id' => '3', 'slug' => 'project-5-' . Project::createProjectSlug() ],
         ];
 
         DB::table('users')->insert($users);

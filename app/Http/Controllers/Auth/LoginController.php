@@ -31,7 +31,7 @@ class LoginController extends Controller
     public function redirectPath()
     {
         // Do your logic to flash data to session...
-        session()->flash('status', __('customMessage.loggedIn'));
+        session()->flash('status', __('message.loggedIn'));
 
         // Return the results of the method we are overriding that we aliased.
         return $this->laravelRedirectPath();

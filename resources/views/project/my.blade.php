@@ -5,6 +5,26 @@
 @endsection
 
 @section('content')
+    <!-- Modal -->
+    <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteLabel">{{ __('page.project.modalRemove.title') }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ __('page.project.modalRemove.body') }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('page.project.modalRemove.cancel') }}</button>
+                    <a href="" type="button" class="btn btn-primary">{{ __('page.project.modalRemove.confirm') }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
@@ -35,7 +55,7 @@
                                                     class="far fa-eye"></i></a> <a
                                                 href="{{ route('project.edit', $projectLeader->slug) }}"><i
                                                     class="far fa-edit"></i></a> <a
-                                                href="{{ route('project.delete', $projectLeader->slug) }}"><i
+                                                href="{{ route('project.delete', $projectLeader->slug) }}" data-toggle="modal" data-target="#confirmDelete"><i
                                                     class="fas fa-times"></i></a></td>
                                     </tr>
                                 @endforeach

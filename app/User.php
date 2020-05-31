@@ -3,8 +3,27 @@
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Date;
+
+/**
+ * Class User
+ * @property int id;
+ * @property string email;
+ * @property string password;
+ * @property string name;
+ * @property string surname;
+ * @property string gender;
+ * @property date birthday;
+ * @property string skills;
+ * @property array interests;
+ * @property boolean isAdmin;
+ * @mixin Collection;
+ * @mixin Builder
+ */
 
 class User extends Authenticatable
 {

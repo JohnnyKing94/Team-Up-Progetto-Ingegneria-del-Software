@@ -65,7 +65,7 @@ class ProfileController extends Controller
             }
 
             return redirect()->back()
-                ->with('message', __('customMessage.profileUpdated'));
+                ->with('message', __('message.profile.updated'));
         }
     }
 }

@@ -22,7 +22,7 @@ class ProjectController extends Controller
     public function my()
     {
         $id = auth()->user()->id;
-        $projectsAsLeader = Project::where('ownerid', $id)->get();
+        $projectsAsLeader = Project::where('owner_id', $id)->get();
 
         return view('project.my')->with(['projectsAsLeader' => $projectsAsLeader]);
     }
@@ -55,25 +55,28 @@ class ProjectController extends Controller
                 'name' => $request['name'],
                 'description' => $request['description'],
                 'labels' => implode(',', $request['labels']),
-                'ownerid' => auth()->user()->id,
+                'owner_id' => auth()->user()->id,
                 'slug' => $uniqueSlug,
             ]);
 
             return redirect()->home()
-                ->with('message', __('customMessage.projectCreated'));
+                ->with('message', __('message.project.created'));
         }
     }
 
     public function edit(Request $request)
     {
+        $slug = $request['slug'];
+        $project = Project::where('slug', $slug)->first();
+        $this->authorize('edit', $project);
+
         if ($request->isMethod('get')) {
-            $slug = $request['slug'];
             $detailProject = Project::where('slug', $slug)->first();
 
             return view('project.edit')->with(['detailProject' => $detailProject]);
         }
         if ($request->isMethod('post')) {
-            $slug = $request['slug'];
+
             $nameCurrent = DB::table('projects')->select('name')->where('slug', $slug)->get();
             Validator::make($request->all(), [
                 'name' => ['required', 'string', 'min:5', 'max:40', Rule::unique('projects')->ignore($nameCurrent)],
@@ -88,17 +91,19 @@ class ProjectController extends Controller
             ]);
 
             return redirect()->back()
-                ->with('message', __('customMessage.projectUpdated'));
+                ->with('message', __('message.project.updated'));
         }
     }
     public function delete(Request $request)
     {
         $slug = $request['slug'];
+        $project = Project::where('slug', $slug)->first();
+        $this->authorize('delete', $project);
 
         Project::where('slug', $slug)->delete();
 
         return redirect()->home()
-            ->with('message', __('customMessage.projectDeleted'));
+            ->with('message', __('message.project.deleted'));
     }
 
 }

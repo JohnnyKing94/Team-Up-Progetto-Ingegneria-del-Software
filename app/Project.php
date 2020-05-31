@@ -2,8 +2,21 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+
+/**
+ * Class Project
+ * @property int id;
+ * @property string name;
+ * @property array labels;
+ * @property int owner_id;
+ * @property string slug;
+ * @mixin Collection
+ * @mixin Builder
+ */
 
 class Project extends Model
 {
@@ -19,7 +32,7 @@ class Project extends Model
         'name',
         'description',
         'labels',
-        'ownerid',
+        'owner_id',
         'slug',
     ];
 
@@ -40,6 +53,6 @@ class Project extends Model
     }
     public function leader()
     {
-        return $this->belongsTo('App\User', 'ownerid');
+        return $this->belongsTo('App\User', 'owner_id');
     }
 }
