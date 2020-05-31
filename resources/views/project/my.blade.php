@@ -6,7 +6,7 @@
 
 @section('content')
     <!-- Modal -->
-    <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -20,13 +20,13 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('page.project.modalRemove.cancel') }}</button>
-                    <a href="" type="button" class="btn btn-primary">{{ __('page.project.modalRemove.confirm') }}</a>
+                    <a id="confirm" href="" type="button" class="btn btn-primary" name="slug">{{ __('page.project.modalRemove.confirm') }}</a>
                 </div>
             </div>
         </div>
     </div>
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">{{ __('title.project.my.general') }}</div>
@@ -55,7 +55,7 @@
                                                     class="far fa-eye"></i></a> <a
                                                 href="{{ route('project.edit', $projectLeader->slug) }}"><i
                                                     class="far fa-edit"></i></a> <a
-                                                href="{{ route('project.delete', $projectLeader->slug) }}" data-toggle="modal" data-target="#confirmDelete"><i
+                                                href="" id="confirmDeleteIcon" data-value="{{ route('project.delete', $projectLeader->slug) }}" data-toggle="modal" data-target="#confirmDeleteModal"><i
                                                     class="fas fa-times"></i></a></td>
                                     </tr>
                                 @endforeach

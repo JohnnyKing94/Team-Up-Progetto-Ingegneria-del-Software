@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
  * Class Project
  * @property int id;
  * @property string name;
+ * * @property string description;
  * @property array labels;
  * @property int owner_id;
  * @property string slug;

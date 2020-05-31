@@ -28,3 +28,4 @@ Route::match(['get', 'post'],'project/create', ['as' => 'project.create', 'uses'
 Route::get('project/{slug}', 'Project\ProjectController@show')->name('project.show')->middleware('auth');
 Route::match(['get', 'post'],'project/{slug}/edit', ['as' => 'project.edit', 'uses' => 'Project\ProjectController@edit'])->middleware('auth');
 Route::get('project/{slug}/delete', ['as' => 'project.delete', 'uses' => 'Project\ProjectController@delete'])->middleware('auth');
+Route::match(['get', 'post'],'project/{slug}/sponsor', ['as' => 'project.sponsor', 'uses' => 'Project\ProjectController@sponsor'])->middleware('auth');

@@ -20,5 +20,6 @@ return [
         'create' => 'Crea Progetto',
         'edit' => 'Modifica Progetto',
         'show' => 'Pagina riepilogativa',
+        'sponsor' => 'Promuovi',
     ],
 ];

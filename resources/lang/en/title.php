@@ -20,5 +20,6 @@ return [
         'create' => 'Create Project',
         'edit' => 'Edit Project',
         'show' => 'Summary Page',
+        'sponsor' => 'Sponsor',
     ],
 ];

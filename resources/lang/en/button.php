@@ -7,6 +7,7 @@ return [
         'project' => [
             'create' => 'Create project',
             'update' => 'Update',
+            'buy' => 'Buy',
         ],
         'profile' => [
             'update' => 'Update',

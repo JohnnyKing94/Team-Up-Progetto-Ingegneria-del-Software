@@ -1,25 +1,25 @@
 @extends('layouts.app')
 
 @section('page_title')
-    {{$detailProject->name}} - {{ __('title.project.edit') }}
+    {{$project->name}} - {{ __('title.project.edit') }}
 @endsection
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row">
             <div class="col-md-10">
                 <div class="card">
                     <div class="card-header">{{ __('title.project.edit') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('project.edit', $detailProject->slug)  }}">
+                        <form method="POST" action="{{ route('project.edit', $project->slug)  }}">
                             @csrf
 
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('field.project.name') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $detailProject->name }}" required autocomplete="name" autofocus>
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $project->name }}" required autocomplete="name" autofocus>
 
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -33,7 +33,7 @@
                                 <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('field.project.description') }}</label>
 
                                 <div class="col-md-6">
-                                    <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" rows="10" required autocomplete="description" autofocus>{{ $detailProject->description }}</textarea>
+                                    <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" rows="10" required autocomplete="description" autofocus>{{ $project->description }}</textarea>
 
                                     @error('description')
                                     <span class="invalid-feedback" role="alert">
@@ -50,7 +50,7 @@
                                     <label>{{ __('field.project.selectMultipleLabels') }}</label>
                                     <select id="labels" multiple class="form-control @error('labels') is-invalid @enderror" name="labels[]" required autocomplete="labels" autofocus>
                                         @php
-                                            $labels = explode(',', $detailProject->labels);
+                                            $labels = explode(',', $project->labels);
                                         @endphp
                                         <option value="Svago" {{ in_array('Svago', $labels) ? 'selected' : '' }}>Svago</option>
                                         <option value="Sport" {{ in_array('Sport', $labels) ? 'selected' : '' }}>Sport</option>
@@ -73,7 +73,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('button.submit.project.update') }}
                                     </button>
-                                    <a href="{{ url('/') }}" id="cancel" name="cancel" class="btn btn-default">{{ __('button.cancel') }}</a>
+                                    <a href="{{ route('project.show', $project->slug) }}" id="cancel" name="cancel" class="btn btn-default">{{ __('button.cancel') }}</a>
                                 </div>
                             </div>
                             @if(session('message'))

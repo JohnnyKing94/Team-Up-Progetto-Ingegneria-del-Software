@@ -20,5 +20,10 @@ return [
         'labels' => 'Etichette',
         'owner' => 'Proprietario',
         'selectMultipleLabels' => 'Seleziona etichette multiple',
+        'sponsor' => [
+            'title' => 'Titolo',
+            'description' => 'Descrizione',
+            'package' => 'Pacchetto',
+        ],
     ],
 ];

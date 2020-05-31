@@ -35,7 +35,7 @@ class ProjectPolicy
      */
     public function view(User $user, Project $project)
     {
-        //
+        return $user->id === $project->owner_id;
     }
 
     /**
@@ -95,5 +95,17 @@ class ProjectPolicy
     public function forceDelete(User $user, Project $project)
     {
         //
+    }
+
+    /**
+     * Determine whether the user can sponsor the project.
+     *
+     * @param User $user
+     * @param Project $project
+     * @return bool
+     */
+    public function sponsor(User $user, Project $project)
+    {
+        return $user->id === $project->owner_id;
     }
 }

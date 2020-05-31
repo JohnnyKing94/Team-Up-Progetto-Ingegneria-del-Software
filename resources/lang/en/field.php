@@ -19,5 +19,10 @@ return [
         'description' => 'Description',
         'labels' => 'Labels',
         'onwer' => 'Owner',
+        'sponsor' => [
+            'title' => 'Title',
+            'description' => 'Description',
+            'package' => 'Package',
+        ],
     ],
 ];
