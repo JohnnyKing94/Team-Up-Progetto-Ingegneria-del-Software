@@ -2,7 +2,9 @@
 
 return [
     'project' => [
+        'name' => 'Nome',
         'description' => 'Descrizione',
+        'labels' => 'Etichette',
         'leader' => 'Leader',
         'teammates' => 'Membri',
         'services' => [

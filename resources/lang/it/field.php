@@ -18,7 +18,6 @@ return [
         'name' => 'Nome',
         'description' => 'Descrizione',
         'labels' => 'Etichette',
-        'owner' => 'Proprietario',
         'selectMultipleLabels' => 'Seleziona etichette multiple',
         'sponsor' => [
             'title' => 'Titolo',

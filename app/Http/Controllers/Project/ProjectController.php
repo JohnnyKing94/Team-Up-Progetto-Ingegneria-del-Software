@@ -22,7 +22,7 @@ class ProjectController extends Controller
     public function my()
     {
         $id = auth()->user()->id;
-        $projectsAsLeader = Project::where('owner_id', $id)->get();
+        $projectsAsLeader = Project::where('leader_id', $id)->get();
 
         return view('project.my')->with(['projectsAsLeader' => $projectsAsLeader]);
     }
@@ -59,7 +59,7 @@ class ProjectController extends Controller
                 'name' => $request['name'],
                 'description' => $request['description'],
                 'labels' => implode(',', $request['labels']),
-                'owner_id' => auth()->user()->id,
+                'leader_id' => auth()->user()->id,
                 'slug' => $uniqueSlug,
             ]);
 

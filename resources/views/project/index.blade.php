@@ -15,10 +15,10 @@
                             <table class="table">
                                 <thead class="thead-dark ">
                                 <tr>
-                                    <th scope="col">{{ __('field.project.name') }}</th>
-                                    <th scope="col">{{ __('field.project.description') }}</th>
-                                    <th scope="col">{{ __('field.project.labels') }}</th>
-                                    <th scope="col">{{ __('field.project.owner') }}</th>
+                                    <th scope="col">{{ __('page.project.name') }}</th>
+                                    <th scope="col">{{ __('page.project.description') }}</th>
+                                    <th scope="col">{{ __('page.project.labels') }}</th>
+                                    <th scope="col">{{ __('page.project.leader') }}</th>
                                     <th></th>
                                 </tr>
                                 </thead>

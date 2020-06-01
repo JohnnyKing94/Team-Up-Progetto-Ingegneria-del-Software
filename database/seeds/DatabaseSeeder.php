@@ -21,11 +21,11 @@ class DatabaseSeeder extends Seeder
         ];
 
         $projects = [
-            [ 'name' => 'Project 1', 'description' => Lipsum::short()->text(3), 'labels' => 'Svago,Economia,Tecnologia', 'owner_id' => '1', 'slug' => 'project-1-' . Project::createProjectSlug(), 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'), ],
-            [ 'name' => 'Project 2', 'description' => Lipsum::short()->text(2), 'labels' => 'Economia', 'owner_id' => '1', 'slug' => 'project-2-' . Project::createProjectSlug(), 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'), ],
-            [ 'name' => 'Project 3', 'description' => Lipsum::short()->text(4), 'labels' => 'Svago,Tecnologia', 'owner_id' => '2', 'slug' => 'project-3-' . Project::createProjectSlug(), 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'), ],
-            [ 'name' => 'Project 4', 'description' => Lipsum::short()->text(1), 'labels' => 'Politica,Tecnologia', 'owner_id' => '3', 'slug' => 'project-4-' . Project::createProjectSlug(), 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'), ],
-            [ 'name' => 'Project 5', 'description' => Lipsum::short()->text(3), 'labels' => 'Medicina,Economia', 'owner_id' => '3', 'slug' => 'project-5-' . Project::createProjectSlug(), 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'), ],
+            [ 'name' => 'Project 1', 'description' => Lipsum::short()->text(3), 'labels' => 'Svago,Economia,Tecnologia', 'leader_id' => '1', 'slug' => 'project-1-' . Project::createProjectSlug(), 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'), ],
+            [ 'name' => 'Project 2', 'description' => Lipsum::short()->text(2), 'labels' => 'Economia', 'leader_id' => '1', 'slug' => 'project-2-' . Project::createProjectSlug(), 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'), ],
+            [ 'name' => 'Project 3', 'description' => Lipsum::short()->text(4), 'labels' => 'Svago,Tecnologia', 'leader_id' => '2', 'slug' => 'project-3-' . Project::createProjectSlug(), 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'), ],
+            [ 'name' => 'Project 4', 'description' => Lipsum::short()->text(1), 'labels' => 'Politica,Tecnologia', 'leader_id' => '3', 'slug' => 'project-4-' . Project::createProjectSlug(), 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'), ],
+            [ 'name' => 'Project 5', 'description' => Lipsum::short()->text(3), 'labels' => 'Medicina,Economia', 'leader_id' => '3', 'slug' => 'project-5-' . Project::createProjectSlug(), 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'), ],
         ];
 
         DB::table('users')->insert($users);

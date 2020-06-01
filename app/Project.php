@@ -13,7 +13,7 @@ use Illuminate\Support\Str;
  * @property string name;
  * * @property string description;
  * @property array labels;
- * @property int owner_id;
+ * @property int leader_id;
  * @property string slug;
  * @mixin Collection
  * @mixin Builder
@@ -33,7 +33,7 @@ class Project extends Model
         'name',
         'description',
         'labels',
-        'owner_id',
+        'leader_id',
         'slug',
     ];
 
@@ -54,6 +54,6 @@ class Project extends Model
     }
     public function leader()
     {
-        return $this->belongsTo('App\User', 'owner_id');
+        return $this->belongsTo('App\User', 'leader_id');
     }
 }

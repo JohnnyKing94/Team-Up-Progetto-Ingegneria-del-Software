@@ -2,8 +2,10 @@
 
 return [
     'project' => [
+        'name' => 'Nome',
         'description' => 'Description',
         'leader' => 'Leader',
+        'labels' => 'Etichette',
         'teammates' => 'Teammates',
         'services' => [
             'leader' => 'Leader Services',

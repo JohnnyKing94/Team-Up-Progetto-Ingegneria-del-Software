@@ -35,7 +35,7 @@ class ProjectPolicy
      */
     public function view(User $user, Project $project)
     {
-        return $user->id === $project->owner_id;
+        return $user->id === $project->leader_id;
     }
 
     /**
@@ -58,7 +58,7 @@ class ProjectPolicy
      */
     public function edit(User $user, Project $project)
     {
-        return $user->id === $project->owner_id;
+        return $user->id === $project->leader_id;
     }
 
     /**
@@ -70,7 +70,7 @@ class ProjectPolicy
      */
     public function delete(User $user, Project $project)
     {
-        return $user->id === $project->owner_id;
+        return $user->id === $project->leader_id;
     }
 
     /**
@@ -106,6 +106,6 @@ class ProjectPolicy
      */
     public function sponsor(User $user, Project $project)
     {
-        return $user->id === $project->owner_id;
+        return $user->id === $project->leader_id;
     }
 }

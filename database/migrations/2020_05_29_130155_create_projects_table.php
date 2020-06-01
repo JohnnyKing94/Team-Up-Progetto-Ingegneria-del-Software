@@ -18,7 +18,7 @@ class CreateProjectsTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->text('labels');
-            $table->foreignId('owner_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('leader_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('slug')->unique();
             $table->timestamps();
         });
