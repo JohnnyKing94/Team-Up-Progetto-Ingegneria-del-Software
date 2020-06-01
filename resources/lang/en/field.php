@@ -12,12 +12,16 @@ return [
         'skills' => 'Skills',
         'interests' => 'Interests',
         'rememberMe' => 'Remember Me',
-        'selectMultipleInterests' => 'Select multiple interests',
     ],
     'project' => [
         'name' => 'Name',
         'description' => 'Description',
         'labels' => 'Labels',
+        'search' => [
+            'byName' => 'Search projects by name',
+            'totalData' => 'Total Projects',
+            'noData' => 'No projects found!',
+        ],
         'sponsor' => [
             'title' => 'Title',
             'description' => 'Description',

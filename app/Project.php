@@ -11,10 +11,11 @@ use Illuminate\Support\Str;
  * Class Project
  * @property int id;
  * @property string name;
- * * @property string description;
+ * @property string description;
  * @property array labels;
  * @property int leader_id;
  * @property string slug;
+ * @property array $labelsList;
  * @mixin Collection
  * @mixin Builder
  */
@@ -38,20 +39,58 @@ class Project extends Model
     ];
 
     /**
-     * Creates unique project slug
+     * Attributes for this model
+     *
+     * @var array
      */
-    protected static function createProjectSlug()
+    private static $labelsList = [
+        'Svago',
+        'Sport',
+        'Tecnologia',
+        'Economia',
+        'Politica',
+        'Medicina',
+        'Volontariato',
+        'Viaggio',
+        'Arte & Disegno',
+        'Musica',
+        'Lettura',
+        'Videogioco',
+    ];
+
+    /**
+     * Creates unique project slug
+     *
+     * @return string
+     */
+    protected static function createSlugCode()
     {
         $exists = true;
         while ($exists) {
-            $slug = Str::random(15);
-            $check = self::where('slug', $slug)->first();
+            $slugCode = Str::random(15);
+            $check = self::where('slug', $slugCode)->first();
             if(!$check){
                 $exists = false;
             }
         }
-        return $slug;
+        return $slugCode;
     }
+
+    /**
+     * Getter for all defined labels
+     *
+     * @return array
+     */
+    protected static function getLabels()
+    {
+        return self::$labelsList;
+    }
+
+    /**
+     * Create relationship between User and Project
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function leader()
     {
         return $this->belongsTo('App\User', 'leader_id');

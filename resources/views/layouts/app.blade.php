@@ -12,7 +12,10 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/jquery-3.5.1.js') }}"></script>
-    <script src="{{ asset('js/slugSetter.js') }}"></script>
+    <script src="{{ asset('select2/js/select2.min.js') }}" defer></script>
+    <script src="{{ asset('select2/js/i18n/it.js') }}" defer></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
+    @stack('script')
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -21,6 +24,9 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('fontawesome/css/all.css') }}" rel="stylesheet">
+    <link href="{{ asset('select2/css/select2.css') }}" rel="stylesheet">
+    <link href="{{ asset('select2/css/select2-bootstrap4.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 </head>
 <body>
 <div id="app">

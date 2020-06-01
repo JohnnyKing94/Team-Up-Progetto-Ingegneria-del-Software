@@ -47,14 +47,10 @@
                                 <label for="interests" class="col-md-4 col-form-label text-md-right">{{ __('field.project.labels') }}</label>
 
                                 <div class="col-md-6">
-                                    <label>{{ __('field.project.selectMultipleLabels') }}</label>
-                                    <select id="labels" multiple class="form-control @error('labels') is-invalid @enderror" name="labels[]" required autocomplete="labels" autofocus>
-                                        <option value="Svago" {{  old('labels[]') == 'Svago' ? 'selected' : '' }}>Svago</option>
-                                        <option value="Sport" {{ old('labels[]') == 'Sport' ? 'selected' : '' }}>Sport</option>
-                                        <option value="Tecnologia" {{ old('labels[]') == 'Tecnologia' ? 'selected' : '' }}>Tecnologia</option>
-                                        <option value="Economia" {{ old('labels[]') == 'Economia' ? 'selected' : '' }}>Economia</option>
-                                        <option value="Politica" {{ old('labels[]') == 'Politica' ? 'selected' : '' }}>Politica</option>
-                                        <option value="Medicina" {{ old('labels[]') == 'Medicina' ? 'selected' : '' }}>Medicina</option>
+                                       <select id="labels" multiple class="js-labels-multiple form-control @error('labels') is-invalid @enderror" name="labels[]" required autocomplete="labels" autofocus>
+                                        @foreach($labels as $label)
+                                            <option value="{{$label}}" {{  collect(old('labels'))->contains($label) == $label ? 'selected' : '' }}>{{$label}}</option>
+                                        @endforeach
                                     </select>
 
                                     @error('labels')

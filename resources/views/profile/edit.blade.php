@@ -150,17 +150,13 @@
                                        class="col-md-4 col-form-label text-md-right">{{ __('field.user.interests') }}</label>
 
                                 <div class="col-md-6">
-                                    <label>{{ __('field.user.selectMultipleInterests') }}</label>
-                                    <select id="interests" multiple class="form-control @error('interests') is-invalid @enderror" name="interests[]" required autocomplete="interests" autofocus>
+                                    <select id="interests" multiple class="js-interests-multiple form-control @error('interests') is-invalid @enderror" name="interests[]" required autocomplete="interests" autofocus>
                                         @php
-                                            $interests = explode(',', Auth::user()->interests);
+                                            $selectedInterests = explode(',', Auth::user()->interests);
                                         @endphp
-                                        <option value="Svago" {{ in_array('Svago', $interests) ? 'selected' : '' }}>Svago</option>
-                                        <option value="Sport" {{ in_array('Sport', $interests) ? 'selected' : '' }}>Sport</option>
-                                        <option value="Tecnologia" {{ in_array('Tecnologia', $interests) ? 'selected' : '' }}>Tecnologia</option>
-                                        <option value="Economia" {{ in_array('Economia', $interests) ? 'selected' : '' }}>Economia</option>
-                                        <option value="Politica" {{ in_array('Politica', $interests) ? 'selected' : '' }}>Politica</option>
-                                        <option value="Medicina" {{ in_array('Medicina', $interests) ? 'selected' : '' }}>Medicina</option>
+                                        @foreach($interests as $interest)
+                                            <option value="{{$interest}}" {{ in_array($interest, $selectedInterests) ? 'selected' : '' }}>{{$interest}}</option>
+                                        @endforeach
                                     </select>
                                     @error('interests')
                                     <span class="invalid-feedback" role="alert">

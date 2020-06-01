@@ -12,13 +12,16 @@ return [
         'skills' => 'Competenze',
         'interests' => 'Interessi',
         'rememberMe' => 'Ricordami',
-        'selectMultipleInterests' => 'Seleziona interessi multipli',
     ],
     'project' => [
         'name' => 'Nome',
         'description' => 'Descrizione',
         'labels' => 'Etichette',
-        'selectMultipleLabels' => 'Seleziona etichette multiple',
+        'search' => [
+            'byName' => 'Cerca progetti per nome',
+            'totalData' => 'Progetti totali',
+            'noData' => 'Nessun progetto trovato!',
+        ],
         'sponsor' => [
             'title' => 'Titolo',
             'description' => 'Descrizione',

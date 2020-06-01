@@ -47,17 +47,13 @@
                                 <label for="interests" class="col-md-4 col-form-label text-md-right">{{ __('field.project.labels') }}</label>
 
                                 <div class="col-md-6">
-                                    <label>{{ __('field.project.selectMultipleLabels') }}</label>
-                                    <select id="labels" multiple class="form-control @error('labels') is-invalid @enderror" name="labels[]" required autocomplete="labels" autofocus>
+                                    <select id="labels" multiple class="js-labels-multiple form-control @error('labels') is-invalid @enderror" name="labels[]" required autocomplete="labels" autofocus>
                                         @php
-                                            $labels = explode(',', $project->labels);
+                                            $selectedLabels = explode(',', $project->labels);
                                         @endphp
-                                        <option value="Svago" {{ in_array('Svago', $labels) ? 'selected' : '' }}>Svago</option>
-                                        <option value="Sport" {{ in_array('Sport', $labels) ? 'selected' : '' }}>Sport</option>
-                                        <option value="Tecnologia" {{ in_array('Tecnologia', $labels) ? 'selected' : '' }}>Tecnologia</option>
-                                        <option value="Economia" {{ in_array('Economia', $labels) ? 'selected' : '' }}>Economia</option>
-                                        <option value="Politica" {{ in_array('Politica', $labels) ? 'selected' : '' }}>Politica</option>
-                                        <option value="Medicina" {{ in_array('Medicina', $labels) ? 'selected' : '' }}>Medicina</option>
+                                        @foreach($labels as $label)
+                                            <option value="{{$label}}" {{ in_array($label, $selectedLabels) ? 'selected' : '' }}>{{$label}}</option>
+                                        @endforeach
                                     </select>
 
                                     @error('labels')

@@ -41,9 +41,18 @@
                                         {{ session('message') }}
                                     </div>
                                 @endif
+                                @if ($alreadySponsored)
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ __('message.project.sponsor.expirationDate', ['date' => $expirationDate]) }}
+                                    </div>
+                                        <div class="alert alert-info text-justify" role="alert">
+                                            <label class="text-uppercase font-weight-bolder">{{ __('message.project.sponsor.fullMessage') }}</label>
+                                            <p>{{ $sponsor->description }}</p>
+                                        </div>
+                                @endif
                                 <div class="row card-title">
                                     <div
-                                        class="ml-3 h1 text-uppercase font-weight-bold">{{$project->name}}</div>
+                                            class="ml-3 h1 text-uppercase font-weight-bold">{{$project->name}}</div>
                                     <div class="ml-3 mt-2 col-form-label">{{$project->labels}}</div>
                                 </div>
                             </div>
@@ -51,7 +60,7 @@
                         <div class="form-group row">
                             <div class="col-md-8 mb-5">
                                 <div class="mr-2">
-                                    <label class="font-weight-bold">{{ __('page.project.description') }}</label>
+                                    <label class="font-weight-bolder">{{ __('page.project.description') }}</label>
                                     <p class="card-text">{{$project->description}}</p>
                                 </div>
                             </div>
@@ -86,21 +95,21 @@
                                         </a>
                                     </div>
                                     @can('view', $project)
-                                    <div class="form-group">
-                                        <h5 class="card-title font-weight-bold text-uppercase">{{ __('page.project.services.leader') }}</h5>
-                                        <a href=""
-                                           class="btn btn-info btn-lg btn-block">{{ __('page.project.manageRequests') }}
-                                        </a>
-                                        <a href="{{ route('project.edit', $project->slug) }}"
-                                           class="btn btn-info btn-lg btn-block">{{ __('page.project.edit') }}
-                                        </a>
-                                        <button class="btn btn-info btn-lg btn-block" data-toggle="modal"
-                                                data-target="#confirmDeleteModal">{{ __('page.project.delete') }}
-                                        </button>
-                                        <a href="{{ route('project.sponsor', $project->slug) }}"
-                                           class="btn btn-info btn-lg btn-block">{{ __('page.project.sponsor') }}
-                                        </a>
-                                    </div>
+                                        <div class="form-group">
+                                            <h5 class="card-title font-weight-bold text-uppercase">{{ __('page.project.services.leader') }}</h5>
+                                            <a href=""
+                                               class="btn btn-info btn-lg btn-block">{{ __('page.project.manageRequests') }}
+                                            </a>
+                                            <a href="{{ route('project.edit', $project->slug) }}"
+                                               class="btn btn-info btn-lg btn-block">{{ __('page.project.edit') }}
+                                            </a>
+                                            <button class="btn btn-info btn-lg btn-block" data-toggle="modal"
+                                                    data-target="#confirmDeleteModal">{{ __('page.project.delete') }}
+                                            </button>
+                                            <a href="{{ route('project.sponsor', $project->slug) }}"
+                                               class="btn btn-info btn-lg btn-block{{ $alreadySponsored ? ' disabled' : '' }}">{{ __('page.project.sponsor') }}
+                                            </a>
+                                        </div>
                                     @endcan
                                     <div class="form-group">
                                         <h5 class="card-title font-weight-bold text-uppercase">{{ __('page.project.services.general') }}</h5>

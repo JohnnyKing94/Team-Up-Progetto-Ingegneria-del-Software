@@ -33,7 +33,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ __('title.project.my.leader') }}</h5>
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table table-striped table-bordered">
                                 <thead class="thead-dark ">
                                 <tr>
                                     <th scope="col">{{ __('page.project.name') }}</th>
@@ -64,7 +64,7 @@
                         </div>
                         <h5 class="card-title">{{ __('title.project.my.teammate') }}</h5>
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table table-striped table-bordered">
                                 <thead class="thead-dark ">
                                 <tr>
                                     <th scope="col">{{ __('page.project.name') }}</th>

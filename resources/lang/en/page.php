@@ -1,6 +1,12 @@
 <?php
 
 return [
+    'home' => [
+        'sponsor' => [
+            'header' => 'Sponsored Projects',
+            'body' => 'Every project sponsored by Team Up!'
+        ],
+    ],
     'project' => [
         'name' => 'Nome',
         'description' => 'Description',

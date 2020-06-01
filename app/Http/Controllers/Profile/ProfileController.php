@@ -19,7 +19,7 @@ class ProfileController extends Controller
     public function edit(Request $request)
     {
         if ($request->isMethod('get')) {
-            return view('profile.edit');
+            return view('profile.edit')->with(['interests' => User::getInterests()]);
         }
         if ($request->isMethod('post')) {
             $id = auth()->user()->id;

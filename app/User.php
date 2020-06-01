@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Date;
  * @property string skills;
  * @property array interests;
  * @property boolean isAdmin;
+ * @property array $interestsList;
  * @mixin Collection;
  * @mixin Builder
  */
@@ -56,4 +57,34 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'isAdmin' => 'boolean',
     ];
+
+    /**
+     * Attributes for this model
+     *
+     * @var array
+     */
+    private static $interestsList = [
+        'Svago',
+        'Sport',
+        'Tecnologia',
+        'Economia',
+        'Politica',
+        'Medicina',
+        'Volontariato',
+        'Viaggio',
+        'Arte & Disegno',
+        'Musica',
+        'Lettura',
+        'Videogioco',
+    ];
+
+    /**
+     * Getter for all defined labels
+     *
+     * @return array
+     */
+    protected static function getInterests()
+    {
+        return self::$interestsList;
+    }
 }

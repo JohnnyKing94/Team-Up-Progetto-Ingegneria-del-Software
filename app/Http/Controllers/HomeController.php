@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Sponsor;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $sponsors = Sponsor::all();
+        return view('home')->with(['sponsors' => $sponsors]);
     }
 }

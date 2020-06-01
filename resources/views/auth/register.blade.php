@@ -129,17 +129,10 @@
                             <label for="interests" class="col-md-4 col-form-label text-md-right">{{ __('field.user.interests') }}</label>
 
                             <div class="col-md-6">
-                                <label>{{ __('field.user.selectMultipleInterests') }}</label>
-                                <select id="interests" multiple class="form-control @error('interests') is-invalid @enderror" name="interests[]" required autocomplete="interests" autofocus>
-                                    @php
-                                        $interests = ["Svago","Sport","Tecnologia","Economia","Politica", "Medicina"];
-                                    @endphp
-                                    <option value="Svago" {{  old('interests[]') == 'Svago' ? 'selected' : '' }}>Svago</option>
-                                    <option value="Sport" {{ old('interests[]') == 'Sport' ? 'selected' : '' }}>Sport</option>
-                                    <option value="Tecnologia" {{ old('interests[]') == 'Tecnologia' ? 'selected' : '' }}>Tecnologia</option>
-                                    <option value="Economia" {{ old('interests[]') == 'Economia' ? 'selected' : '' }}>Economia</option>
-                                    <option value="Politica" {{ old('interests[]') == 'Politica' ? 'selected' : '' }}>Politica</option>
-                                    <option value="Medicina" {{ old('interests[]') == 'Medicina' ? 'selected' : '' }}>Medicina</option>
+                                <select id="interests" multiple class="js-interests-multiple form-control @error('interests') is-invalid @enderror" name="interests[]" required autocomplete="interests" autofocus>
+                                    @foreach($interests as $interest)
+                                        <option value="{{$interest}}" {{  collect(old('interests'))->contains($interest) == $interest ? 'selected' : '' }}>{{$interest}}</option>
+                                    @endforeach
                                 </select>
 
                                 @error('interests')

@@ -47,7 +47,7 @@
                                        class="col-md-4 col-form-label text-md-right">{{ __('field.user.birthday') }}</label>
 
                                 <div class="col-md-6 col-form-label font-weight-bold">
-                                    {{ date('j F Y', strtotime(Auth::user()->birthday)) }}
+                                    {{ \Carbon\Carbon::parse(Auth::user()->birthday)->locale(Config::get('app.locale'))->formatLocalized('%d/%m/%Y') }}
                                 </div>
                             </div>
 

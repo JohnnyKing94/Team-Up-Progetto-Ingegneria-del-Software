@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Project
+ * Class Sponsor
  * @property int id;
  * @property string title;
  * @property string description;

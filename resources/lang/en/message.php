@@ -10,7 +10,11 @@ return [
         'created' => 'Project created!',
         'updated' => 'Project updated!',
         'deleted' => 'Project deleted!',
-        'sponsored' => 'Project sponsored! From now on, you can see your project in homepage. The promotion will expire in 30 days.',
-        'alreadySponsored' => 'You are already sponsoring this project!',
+        'sponsor' => [
+            'created' => 'Project sponsored! From now on, you can see your project in homepage. The promotion will expire in 30 days.',
+            'already' => 'You are already sponsoring this project! The sponsorship will expire the :date',
+            'fullMessage' => 'Full sponsorship message:',
+            'expirationDate' => 'The sponsorship will expire the :date',
+        ],
     ],
 ];
