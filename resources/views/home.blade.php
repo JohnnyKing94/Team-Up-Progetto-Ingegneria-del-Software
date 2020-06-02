@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('page_title')
-    {{ __('title.home') }}
-@endsection
+@section('page_title'){{ __('title.home') }}@endsection
 
 @section('content')
     <div class="container">
@@ -28,7 +26,7 @@
                         @guest
                             <div class="card mt-4">
                                 <div class="card-body">
-                                    <p class="card-text float-left mt-3">Fai <a href="{{ route('login') }}" class="btn btn-primary">accesso ora</a> e usufruisci di questo servizio
+                                    <p class="card-text float-left mt-3"><a href="{{ route('login') }}" class="btn btn-primary">Accedi ora</a> e usufruisci di questo servizio
                                         gratuito!</p>
                                     <p class="card-text float-right mt-3">Cosa??? Non sei ancora registrato? <a href="{{ route('register') }}" class="btn btn-dark">Fallo ora!</a>
                                     </p>

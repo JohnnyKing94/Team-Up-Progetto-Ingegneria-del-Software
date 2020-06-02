@@ -33,10 +33,9 @@ class DatabaseSeeder extends Seeder
 
         $sponsors = [
             [ 'title' => 'Sponsorship 1', 'description' => Lipsum::short()->text(3), 'project_id' => '1', 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'), ],
-            [ 'title' => 'Sponsorship 2', 'description' => Lipsum::short()->text(3), 'project_id' => '1', 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'), ],
-            [ 'title' => 'Sponsorship 3', 'description' => Lipsum::short()->text(2), 'project_id' => '2', 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'), ],
-            [ 'title' => 'Sponsorship 4', 'description' => Lipsum::short()->text(4), 'project_id' => '3', 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'), ],
-            [ 'title' => 'Sponsorship 5', 'description' => Lipsum::short()->text(4), 'project_id' => '3', 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'), ],
+            [ 'title' => 'Sponsorship 2', 'description' => Lipsum::short()->text(3), 'project_id' => '3', 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'), ],
+            [ 'title' => 'Sponsorship 3', 'description' => Lipsum::short()->text(2), 'project_id' => '6', 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'), ],
+            [ 'title' => 'Sponsorship 4', 'description' => Lipsum::short()->text(4), 'project_id' => '8', 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'), ],
         ];
 
         DB::table('users')->insert($users);

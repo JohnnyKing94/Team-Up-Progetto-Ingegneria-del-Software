@@ -142,7 +142,7 @@ class ProjectController extends Controller
 
         $expirationDate = null;
 
-        $sponsor ? $expirationDate = $sponsor->created_at->addDays(30)->format('d/m/Y - G:i:s') : null;
+        $sponsor ? $expirationDate = $sponsor->created_at->addDays(30)->format('d/m/Y - H:i:s') : null;
 
         if ($project) {
             $this->authorize('sponsor', $project);

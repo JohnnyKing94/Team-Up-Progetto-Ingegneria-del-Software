@@ -134,6 +134,7 @@ return [
             'rule-name' => 'custom-message',
         ],
     ],
+    'olderThan' => 'You must be at least :age years old.',
 
     /*
     |--------------------------------------------------------------------------

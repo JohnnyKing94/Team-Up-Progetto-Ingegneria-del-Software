@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('page_title')
-    {{ __('title.reset') }}
-@endsection
+@section('page_title'){{ __('title.reset') }}@endsection
 
 @section('content')
 <div class="container">

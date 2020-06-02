@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('page_title')
-    {{$project->name}} - {{ __('title.project.sponsor') }}
-@endsection
+@section('page_title'){{$project->name}} - {{ __('title.project.sponsor') }}@endsection
 
 @section('content')
     <!-- Modal -->

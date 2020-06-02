@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('page_title')
-    {{ __('title.project.my.general') }}
-@endsection
+@section('page_title'){{ __('title.project.my.general') }}@endsection
 
 @section('content')
     <!-- Modal -->

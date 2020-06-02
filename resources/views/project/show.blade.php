@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('page_title')
-    {{$project->name}} - {{ __('title.project.show') }}
-@endsection
+@section('page_title'){{$project->name}} - {{ __('title.project.show') }}@endsection
 
 @section('content')
     <!-- Modal -->
@@ -65,7 +63,7 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="mr-5 ml-5">
+                                <div class="ml-3">
                                     <div class="form-group">
                                         <h5 class="card-title font-weight-bold text-uppercase">{{ __('page.project.leader') }}</h5>
                                         <a href=""

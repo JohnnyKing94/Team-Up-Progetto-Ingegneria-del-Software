@@ -5,7 +5,7 @@ return [
         'register' => 'Registrati',
         'login' => 'Entra',
         'project' => [
-            'create' => 'Crea Progetto',
+            'create' => 'Crea',
             'update' => 'Aggiorna',
             'buy' => 'Compra',
         ],

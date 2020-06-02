@@ -34,7 +34,7 @@ class ProfileController extends Controller
                 'name' => ['required', 'string', 'max:255'],
                 'surname' => ['required', 'string', 'max:255'],
                 'gender' => ['required', 'string', 'max:50'],
-                'birthday' => ['required', 'date'],
+                'birthday' => ['required', 'date', 'older_than:18'],
                 'skills' => ['required', 'string'],
                 'interests' => ['required', 'array']
             ])->validate();

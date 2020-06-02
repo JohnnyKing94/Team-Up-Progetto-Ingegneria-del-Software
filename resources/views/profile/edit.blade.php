@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('page_title')
-    {{ __('title.profile.edit') }}
-@endsection
+@section('page_title'){{ __('title.profile.edit') }}@endsection
 
 @section('content')
     <div class="container">
@@ -10,8 +8,12 @@
             <div class="col-md-10">
                 <div class="card">
                     <div class="card-header">{{ __('title.profile.edit') }}</div>
-
                     <div class="card-body">
+                        @if(session('message'))
+                            <div class="alert alert-success">
+                                {{session('message')}}
+                            </div>
+                        @endif
                         <form method="POST" action="{{ route('profile.edit') }}">
                             @csrf
 
@@ -97,7 +99,7 @@
                                        class="col-md-4 col-form-label text-md-right">{{ __('field.user.birthday') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="birthday" type="date"
+                                    <input id="birthday" max="{{ \Carbon\Carbon::today()->addYear(5)->toDateString() }}" min="{{ \Carbon\Carbon::today()->subYear(110)->toDateString() }}" type="date"
                                            class="form-control @error('birthday') is-invalid @enderror" name="birthday"
                                            value="{{ Auth::user()->birthday }}" required autocomplete="birthday" autofocus>
 
@@ -150,7 +152,8 @@
                                        class="col-md-4 col-form-label text-md-right">{{ __('field.user.interests') }}</label>
 
                                 <div class="col-md-6">
-                                    <select id="interests" multiple class="js-interests-multiple form-control @error('interests') is-invalid @enderror" name="interests[]" required autocomplete="interests" autofocus>
+                                    <select id="interests" multiple class="js-interests-multiple form-control @error('interests') is-invalid @enderror" name="interests[]" required
+                                            autocomplete="interests" autofocus>
                                         @php
                                             $selectedInterests = explode(',', Auth::user()->interests);
                                         @endphp
@@ -174,12 +177,6 @@
                                     <a href="{{ url('/') }}" id="cancel" name="cancel" class="btn btn-default">{{ __('button.cancel') }}</a>
                                 </div>
                             </div>
-                            @if(session('message'))
-                                <br />
-                                <div class="alert alert-success">
-                                    {{session('message')}}
-                                </div>
-                            @endif
                         </form>
                     </div>
                 </div>

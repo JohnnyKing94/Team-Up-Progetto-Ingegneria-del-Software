@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('page_title')
-    {{ __('title.login') }}
-@endsection
+@section('page_title'){{ __('title.login') }}@endsection
 
 @section('content')
 <div class="container">

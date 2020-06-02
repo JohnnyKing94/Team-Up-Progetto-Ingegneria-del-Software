@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('page_title')
-    {{ __('title.profile.my') }}
-@endsection
+@section('page_title'){{ __('title.profile.my') }}@endsection
 
 @section('content')
     <div class="container">
