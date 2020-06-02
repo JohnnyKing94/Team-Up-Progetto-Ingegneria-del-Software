@@ -3,29 +3,31 @@
 @section('page_title'){{$project->name}} - {{ __('title.project.show') }}@endsection
 
 @section('content')
-    <!-- Modal -->
-    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="confirmDeleteLabel">{{ __('page.project.modalRemove.title') }}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    {{ __('page.project.modalRemove.body') }}
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary"
-                            data-dismiss="modal">{{ __('page.project.modalRemove.cancel') }}</button>
-                    <a href="{{ route('project.delete', $project->slug) }}" type="button"
-                       class="btn btn-primary">{{ __('page.project.modalRemove.confirm') }}</a>
+    @can('own', $project)
+        <!-- Modal -->
+        <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="confirmDeleteLabel">{{ __('page.project.modalRemove.title') }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{ __('page.project.modalRemove.body') }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                                data-dismiss="modal">{{ __('page.project.modalRemove.cancel') }}</button>
+                        <a href="{{ route('project.delete', $project->slug) }}" type="button"
+                           class="btn btn-primary">{{ __('page.project.modalRemove.confirm') }}</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endcan
     <div class="container">
         <div class="row">
             <div class="col-md-12">

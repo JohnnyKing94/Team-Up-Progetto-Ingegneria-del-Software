@@ -29,13 +29,15 @@ class ProjectController extends Controller
     {
         $slug = $request['slug'];
         $project = Project::where('slug', $slug)->first();
-        $sponsor = Sponsor::where('project_id', $project->id)->first();
+        if ($project) {
+            $sponsor = Sponsor::where('project_id', $project->id)->first();
 
-        $expirationDate = null;
-        $alreadySponsored = false;
+            $expirationDate = null;
+            $alreadySponsored = false;
 
-        $sponsor ? $expirationDate = $sponsor->created_at->addDays(30)->format('d/m/Y - H:i:s') : null;
-        $sponsor ? $alreadySponsored = true : false;
+            $sponsor ? $expirationDate = $sponsor->created_at->addDays(30)->format('d/m/Y - H:i:s') : null;
+            $sponsor ? $alreadySponsored = true : false;
+        }
 
         if ($project) {
             return view('project.show')->with(['project' => $project, 'sponsor' => $sponsor, 'alreadySponsored' => $alreadySponsored, 'expirationDate' => $expirationDate]);
@@ -117,7 +119,9 @@ class ProjectController extends Controller
     {
         $slug = $request['slug'];
         $project = Project::where('slug', $slug)->first();
-        $sponsor = Sponsor::where('project_id', $project->id)->first();
+        if ($project) {
+            $sponsor = Sponsor::where('project_id', $project->id)->first();
+        }
 
         if ($project) {
             $this->authorize('delete', $project);
@@ -138,11 +142,13 @@ class ProjectController extends Controller
     {
         $slug = $request['slug'];
         $project = Project::where('slug', $slug)->first();
-        $sponsor = Sponsor::where('project_id', $project->id)->first();
+        if ($project) {
+            $sponsor = Sponsor::where('project_id', $project->id)->first();
 
-        $expirationDate = null;
+            $expirationDate = null;
+            $sponsor ? $expirationDate = $sponsor->created_at->addDays(30)->format('d/m/Y - H:i:s') : null;
+        }
 
-        $sponsor ? $expirationDate = $sponsor->created_at->addDays(30)->format('d/m/Y - H:i:s') : null;
 
         if ($project) {
             $this->authorize('sponsor', $project);
