@@ -27,13 +27,13 @@ class ProjectPolicy
     }
 
     /**
-     * Determine whether the user can view the project.
+     * Determine whether the user can own the project.
      *
      * @param User $user
      * @param Project $project
      * @return bool
      */
-    public function view(User $user, Project $project)
+    public function own(User $user, Project $project)
     {
         return $user->id === $project->leader_id;
     }

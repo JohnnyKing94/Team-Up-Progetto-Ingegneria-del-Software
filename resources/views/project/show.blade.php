@@ -40,13 +40,15 @@
                                     </div>
                                 @endif
                                 @if ($alreadySponsored)
-                                    <div class="alert alert-danger" role="alert">
-                                        {{ __('message.project.sponsor.expirationDate', ['date' => $expirationDate]) }}
-                                    </div>
-                                        <div class="alert alert-info text-justify" role="alert">
-                                            <label class="text-uppercase font-weight-bolder">{{ __('message.project.sponsor.fullMessage') }}</label>
-                                            <p>{{ $sponsor->description }}</p>
+                                    @can('own', $project)
+                                        <div class="alert alert-danger" role="alert">
+                                            {{ __('message.project.sponsor.expirationDate', ['date' => $expirationDate]) }}
                                         </div>
+                                    @endcan
+                                    <div class="alert alert-info text-justify" role="alert">
+                                        <label class="text-uppercase font-weight-bolder">{{ __('message.project.sponsor.fullMessage') }}</label>
+                                        <p>{{ $sponsor->description }}</p>
+                                    </div>
                                 @endif
                                 <div class="row card-title">
                                     <div
@@ -92,7 +94,7 @@
                                             be added...
                                         </a>
                                     </div>
-                                    @can('view', $project)
+                                    @can('own', $project)
                                         <div class="form-group">
                                             <h5 class="card-title font-weight-bold text-uppercase">{{ __('page.project.services.leader') }}</h5>
                                             <a href=""
