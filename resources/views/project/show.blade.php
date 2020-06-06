@@ -41,6 +41,11 @@
                                         {{ session('message') }}
                                     </div>
                                 @endif
+                                @if ($isPending)
+                                    <div class="alert alert-danger" role="alert">
+                                        {{  __('message.project.join.pending') }}
+                                    </div>
+                                @endif
                                 @if ($alreadySponsored)
                                     @can('own', $project)
                                         <div class="alert alert-danger" role="alert">
@@ -70,58 +75,58 @@
                                 <div class="ml-3">
                                     <div class="form-group">
                                         <h5 class="card-title font-weight-bold text-uppercase">{{ __('page.project.leader') }}</h5>
-                                        <a href=""
-                                           class="btn btn-dark btn-block">{{$project->leader->name}}</a>
+                                        <button class="btn btn-dark btn-block">{{$project->leader->name}} {{$project->leader->surname}}</button>
                                     </div>
                                     <div class="form-group">
-                                        <h5 class="card-title font-weight-bold text-uppercase">{{ __('page.project.teammates') }}</h5>
-                                        <a href="" class="btn btn-light btn-block">Text
-                                            will
-                                            be added...
-                                        </a>
-                                        <a href="" class="btn btn-light btn-block">Text
-                                            will
-                                            be added...
-                                        </a>
-                                        <a href="" class="btn btn-light btn-block">Text
-                                            will
-                                            be added...
-                                        </a>
-                                        <a href="" class="btn btn-light btn-block">Text
-                                            will
-                                            be added...
-                                        </a>
-                                        <a href="" class="btn btn-light btn-block">Text
-                                            will
-                                            be added...
-                                        </a>
+                                        @if ($isTeammate or $isLeader)
+                                            @if (count($project->userTeam) > 0)
+                                                <h5 class="card-title font-weight-bold text-uppercase">{{ __('page.project.teammates') }}</h5>
+                                                @foreach($project->userTeam as $teammate)
+                                                    <button class="btn btn-light btn-block">{{ $teammate->name }} {{ $teammate->surname }}</button>
+                                                @endforeach
+                                            @endif
+                                        @endif
                                     </div>
                                     @can('own', $project)
                                         <div class="form-group">
                                             <h5 class="card-title font-weight-bold text-uppercase">{{ __('page.project.services.leader') }}</h5>
-                                            <a href=""
-                                               class="btn btn-info btn-lg btn-block">{{ __('page.project.manageRequests') }}
+                                            <a href="{{ route('project.manageRequests', $project->slug) }}"
+                                               class="btn btn-info btn-lg btn-block">{{ __('button.project.manageRequests') }}
                                             </a>
                                             <a href="{{ route('project.edit', $project->slug) }}"
-                                               class="btn btn-info btn-lg btn-block">{{ __('page.project.edit') }}
+                                               class="btn btn-info btn-lg btn-block">{{ __('button.project.edit') }}
                                             </a>
                                             <button class="btn btn-info btn-lg btn-block" data-toggle="modal"
-                                                    data-target="#confirmDeleteModal">{{ __('page.project.delete') }}
+                                                    data-target="#confirmDeleteModal">{{ __('button.project.delete') }}
                                             </button>
                                             <a href="{{ route('project.sponsor', $project->slug) }}"
-                                               class="btn btn-info btn-lg btn-block{{ $alreadySponsored ? ' disabled' : '' }}">{{ __('page.project.sponsor') }}
+                                               class="btn btn-info btn-lg btn-block{{ $alreadySponsored ? ' disabled' : '' }}">{{ __('button.project.sponsor') }}
                                             </a>
                                         </div>
                                     @endcan
                                     <div class="form-group">
                                         <h5 class="card-title font-weight-bold text-uppercase">{{ __('page.project.services.general') }}</h5>
                                         <a href=""
-                                           class="btn btn-success btn-lg btn-block">{{ __('page.project.chat') }}
+                                           class="btn btn-success btn-lg btn-block">{{ __('button.project.chat') }}
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        @if (!$isTeammate and !$isLeader)
+                            <div class="form-group row mb-0">
+                                <div class="col-md-6">
+                                    @if (!$isPending)
+                                        <a href="{{ route('project.join.send', $project->slug) }}" id="join" name="join"
+                                           class="btn btn-primary">{{ __('button.submit.project.join') }}</a>
+                                    @endif
+                                    @if ($isPending)
+                                        <a href="{{ route('project.join.cancel', $project->slug) }}" id="join" name="join"
+                                           class="btn btn-primary">{{ __('button.submit.project.cancel') }}</a>
+                                    @endif
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

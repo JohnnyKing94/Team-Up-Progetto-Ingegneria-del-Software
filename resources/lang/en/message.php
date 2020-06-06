@@ -16,5 +16,19 @@ return [
             'fullMessage' => 'Full sponsorship message:',
             'expirationDate' => 'The sponsorship will expire the :date',
         ],
+        'join' => [
+            'done' => 'Join request successfully sent.',
+            'canceled' => 'Join request successfully canceled',
+            'pending' => 'Your join request is in pending. You can choose to cancel the request by clicking the button below!',
+            'already' => [
+                'requested' => 'You already requested to join this project.',
+                'member' => 'You\'re already teammate of this project.',
+                'leader' => 'You\'re already leader of this project.',
+            ],
+            'request' => [
+                'accepted' => 'Join request accepted.',
+                'declined' => 'Join request declined.',
+            ],
+        ],
     ],
 ];

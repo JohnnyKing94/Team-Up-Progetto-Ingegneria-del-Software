@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'Queste credenziali non corssipondono.',
+    'failed' => 'Queste credenziali non corrispondono.',
     'throttle' => 'Troppi tentativi di accesso. Riprova tra: :seconds secondi.',
 
 ];

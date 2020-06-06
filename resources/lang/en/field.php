@@ -27,5 +27,8 @@ return [
             'description' => 'Description',
             'package' => 'Package',
         ],
+        'join' => [
+            'reason' => 'Reason',
+        ],
     ],
 ];

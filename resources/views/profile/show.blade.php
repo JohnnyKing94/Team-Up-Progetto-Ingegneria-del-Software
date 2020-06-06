@@ -18,7 +18,7 @@
                                        class="col-md-4 col-form-label text-md-right">{{ __('field.user.email') }}</label>
 
                                 <div class="col-md-6 col-form-label font-weight-bold">
-                                    {{ Auth::user()->email }}
+                                    {{ $user->email }}
                                 </div>
                             </div>
 
@@ -27,7 +27,7 @@
                                        class="col-md-4 col-form-label text-md-right">{{ __('field.user.name') }}</label>
 
                                 <div class="col-md-6 col-form-label font-weight-bold">
-                                    {{ Auth::user()->name }}
+                                    {{ $user->name }}
                                 </div>
                             </div>
 
@@ -36,7 +36,7 @@
                                        class="col-md-4 col-form-label text-md-right">{{ __('field.user.surname') }}</label>
 
                                 <div class="col-md-6 col-form-label font-weight-bold">
-                                    {{ Auth::user()->surname }}
+                                    {{ $user->surname }}
                                 </div>
                             </div>
 
@@ -45,7 +45,7 @@
                                        class="col-md-4 col-form-label text-md-right">{{ __('field.user.birthday') }}</label>
 
                                 <div class="col-md-6 col-form-label font-weight-bold">
-                                    {{ \Carbon\Carbon::parse(Auth::user()->birthday)->locale(Config::get('app.locale'))->formatLocalized('%d/%m/%Y') }}
+                                    {{ \Carbon\Carbon::parse($user->birthday)->locale(Config::get('app.locale'))->formatLocalized('%d/%m/%Y') }}
                                 </div>
                             </div>
 
@@ -54,7 +54,7 @@
                                        class="col-md-4 col-form-label text-md-right">{{ __('field.user.gender') }}</label>
 
                                 <div class="col-md-6 col-form-label font-weight-bold">
-                                    {{ Auth::user()->gender }}
+                                    {{ $user->gender }}
                                 </div>
                             </div>
 
@@ -63,7 +63,7 @@
                                        class="col-md-4 col-form-label text-md-right">{{ __('field.user.skills') }}</label>
 
                                 <div class="col-md-6 col-form-label font-weight-bold">
-                                    {{ Auth::user()->skills }}
+                                    {{ $user->skills }}
                                 </div>
                             </div>
 
@@ -72,7 +72,7 @@
                                        class="col-md-4 col-form-label text-md-right">{{ __('field.user.interests') }}</label>
 
                                 <div class="col-md-6 col-form-label font-weight-bold">
-                                    {{ str_replace(',', ', ', Auth::user()->interests) }}
+                                    {{ $user->interests }}
                                 </div>
                             </div>
                         </form>

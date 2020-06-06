@@ -16,5 +16,19 @@ return [
             'fullMessage' => 'Messaggio completo di sponsorizzazione:',
             'expirationDate' => 'La promozione del progetto scadrà il giorno :date',
         ],
+        'join' => [
+            'done' => 'Richiesta di partecipazione inviata con successo.',
+            'canceled' => 'Richiesta di partecipazione annullata con successo.',
+            'pending' => 'La tua richiesta di partecipazione è in attesa. Puoi decidere di annullarla, cliccando sul pulsante in basso!',
+            'already' => [
+                'requested' => 'Hai già richiesto di partecipare a questo progetto.',
+                'member' => 'Sei già membro di questo progetto.',
+                'leader' => 'Sei già leader di questo progetto.',
+            ],
+            'request' => [
+                'accepted' => 'Richiesta di partecipazione accettata.',
+                'declined' => 'Richiesta di partecipazione rifiutata.',
+            ],
+        ],
     ],
 ];

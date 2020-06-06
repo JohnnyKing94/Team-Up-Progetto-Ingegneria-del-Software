@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Profile;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -13,13 +14,20 @@ class ProfileController extends Controller
 {
     public function show()
     {
-        return view('profile.show');
+        $userID = Auth::user()->id;
+        $user = User::find($userID)->first();
+        $user->interests = User::spacingInterests($user->interests);
+        return view('profile.show')->with(['user' => $user]);
     }
 
     public function edit(Request $request)
     {
+        $userID = Auth::user()->id;
+        $user = User::find($userID)->first();
+        $user->interests = User::arrayInterests($user->interests);
+
         if ($request->isMethod('get')) {
-            return view('profile.edit')->with(['interests' => User::getInterests()]);
+            return view('profile.edit')->with(['user' => $user, 'interests' => User::getInterests()]);
         }
         if ($request->isMethod('post')) {
             $id = auth()->user()->id;

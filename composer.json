@@ -16,7 +16,8 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "magyarjeti/laravel-lipsum": "dev-master",
-        "ext-json": "*"
+        "ext-json": "*",
+      "ext-cassandra": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.3",

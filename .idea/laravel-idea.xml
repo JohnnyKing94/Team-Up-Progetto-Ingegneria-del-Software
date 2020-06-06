@@ -3,6 +3,7 @@
   <component name="LaravelIdeaMainSettings">
     <option name="generationOptionValues">
       <map>
+        <entry key="createDatabaseMigration.create" value="true" />
         <entry key="createPolicy.register" value="true" />
       </map>
     </option>

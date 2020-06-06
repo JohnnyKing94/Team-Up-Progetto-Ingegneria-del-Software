@@ -27,5 +27,8 @@ return [
             'description' => 'Descrizione',
             'package' => 'Pacchetto',
         ],
+        'join' => [
+          'reason' => 'Motivo',
+        ],
     ],
 ];

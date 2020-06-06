@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Date;
@@ -36,7 +38,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'email', 'password', 'name', 'surname', 'gender', 'birthday', 'skills', 'interests'
+        'email', 'password', 'name', 'surname', 'gender', 'birthday', 'skills', 'interests',
     ];
 
     /**
@@ -63,6 +65,7 @@ class User extends Authenticatable
      *
      * @var array
      */
+
     private static $interestsList = [
         'Svago',
         'Sport',
@@ -86,5 +89,57 @@ class User extends Authenticatable
     protected static function getInterests()
     {
         return self::$interestsList;
+    }
+
+    /**
+     * Give space between interests
+     *
+     * @param $interests
+     * @return string
+     */
+    protected static function spacingInterests($interests)
+    {
+        return str_replace(',', ', ', $interests);
+    }
+
+    /**
+     * Create array for the interests
+     *
+     * @param $interests
+     * @return array
+     */
+    protected static function arrayInterests($interests)
+    {
+        return explode(',', $interests);
+    }
+
+    /**
+     * Create relationship between User and Project
+     *
+     * @return hasMany
+     */
+    public function asLeader()
+    {
+        return $this->hasMany('App\Project', 'leader_id');
+    }
+
+    /**
+     * Create participation_requests relationship between User and Project
+     *
+     * @return BelongsToMany
+     */
+    public function projectRequests()
+    {
+        return $this->belongsToMany('App\Project', 'participation_requests', 'teammate_id', 'project_id')->withPivot('reason', 'identifier', 'created_at');
+    }
+
+    /**
+     * Create teams relationship between User and Project
+     *
+     * @return BelongsToMany
+     */
+    public function asTeammate()
+    {
+        return $this->belongsToMany('App\Project', 'teams', 'teammate_id', 'project_id')->withPivot('join_date');
     }
 }

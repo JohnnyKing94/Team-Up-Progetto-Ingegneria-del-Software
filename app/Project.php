@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Str;
 
 /**
@@ -67,7 +69,7 @@ class Project extends Model
     {
         $exists = true;
         while ($exists) {
-            $slugCode = Str::random(15);
+            $slugCode = Str::random(16);
             $check = self::where('slug', $slugCode)->first();
             if(!$check){
                 $exists = false;
@@ -87,12 +89,55 @@ class Project extends Model
     }
 
     /**
-     * Create relationship between User and Project
+     * Give space between interests
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @param $labels
+     * @return string
+     */
+    protected static function spacingLabels($labels)
+    {
+        return str_replace(',', ', ', $labels);
+    }
+
+    /**
+     * Create array for the interests
+     *
+     * @param $labels
+     * @return array
+     */
+    protected static function arrayLabels($labels)
+    {
+        return explode(',', $labels);
+    }
+
+    /**
+     * Create relationship between Project and User
+     *
+     * @return BelongsTo
      */
     public function leader()
     {
         return $this->belongsTo('App\User', 'leader_id');
     }
+
+    /**
+     * Create participation_requests relationship between Project and User
+     *
+     * @return BelongsToMany
+     */
+    public function userRequests()
+    {
+        return $this->belongsToMany('App\User', 'participation_requests', 'project_id', 'teammate_id')->withPivot('reason', 'identifier', 'created_at');
+    }
+
+    /**
+     * Create teams relationship between Project and User
+     *
+     * @return BelongsToMany
+     */
+    public function userTeam()
+    {
+        return $this->belongsToMany('App\User', 'teams', 'project_id', 'teammate_id')->withPivot('join_date');
+    }
+
 }

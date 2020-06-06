@@ -42,21 +42,26 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($projectsAsLeader as $projectLeader)
-                                    <tr>
-                                        <td>{{$projectLeader->name}}</td>
-                                        <td class="text-truncate"
-                                            style="max-width: 300px;">{{$projectLeader->description}}</td>
-                                        <td>{{$projectLeader->labels}}</td>
-                                        <td>{{$projectLeader->leader->name}}</td>
-                                        <td><a href="{{ route('project.show', $projectLeader->slug) }}"><i
-                                                    class="far fa-eye"></i></a> <a
-                                                href="{{ route('project.edit', $projectLeader->slug) }}"><i
-                                                    class="far fa-edit"></i></a> <a
-                                                href="" id="confirmDeleteIcon" data-value="{{ route('project.delete', $projectLeader->slug) }}" data-toggle="modal" data-target="#confirmDeleteModal"><i
-                                                    class="fas fa-times"></i></a></td>
-                                    </tr>
-                                @endforeach
+                                @if(count($projects->asLeader) > 0)
+                                    @foreach($projects->asLeader as $projectAsLeader)
+                                        <tr>
+                                            <td>{{$projectAsLeader->name}}</td>
+                                            <td class="text-truncate"
+                                                style="max-width: 300px;">{{$projectAsLeader->description}}</td>
+                                            <td>{{$projectAsLeader->labels}}</td>
+                                            <td>{{$projectAsLeader->leader->name . ' ' . \Illuminate\Support\Str::limit($projectAsLeader->leader->surname, 1, $end='.')}}</td>
+                                            <td><a href="{{ route('project.show', $projectAsLeader->slug) }}"><i
+                                                            class="far fa-eye"></i></a> <a
+                                                        href="{{ route('project.edit', $projectAsLeader->slug) }}"><i
+                                                            class="far fa-edit"></i></a> <a
+                                                        href="" id="confirmDeleteIcon" data-value="{{ route('project.delete', $projectAsLeader->slug) }}" data-toggle="modal"
+                                                        data-target="#confirmDeleteModal"><i
+                                                            class="fas fa-times"></i></a></td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <td align="center" colspan="5">{{ __('field.project.search.noData') }}</td>
+                                @endif
                                 </tbody>
                             </table>
                         </div>
@@ -69,9 +74,24 @@
                                     <th scope="col">{{ __('page.project.description') }}</th>
                                     <th scope="col">{{ __('page.project.labels') }}</th>
                                     <th scope="col">{{ __('page.project.leader') }}</th>
+                                    <th scope="col"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @if(count($projects->asTeammate) > 0)
+                                    @foreach($projects->asTeammate as $projectAsTeammate)
+                                        <tr>
+                                            <td>{{$projectAsTeammate->name}}</td>
+                                            <td class="text-truncate"
+                                                style="max-width: 300px;">{{$projectAsTeammate->description}}</td>
+                                            <td>{{$projectAsTeammate->labels}}</td>
+                                            <td>{{$projectAsTeammate->leader->name . ' ' . \Illuminate\Support\Str::limit($projectAsTeammate->leader->surname, 1, $end='.')}}</td>
+                                            <td><a href="{{ route('project.show', $projectAsTeammate->slug) }}"><i class="far fa-eye"></i></a></td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <td align="center" colspan="5">{{ __('field.project.search.noData') }}</td>
+                                @endif
                                 </tbody>
                             </table>
                         </div>

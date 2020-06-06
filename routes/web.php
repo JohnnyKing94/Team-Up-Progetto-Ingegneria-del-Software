@@ -31,3 +31,6 @@ Route::get('project/{slug}', 'Project\ProjectController@show')->name('project.sh
 Route::match(['get', 'post'],'project/{slug}/edit', ['as' => 'project.edit', 'uses' => 'Project\ProjectController@edit'])->middleware('auth');
 Route::get('project/{slug}/delete', ['as' => 'project.delete', 'uses' => 'Project\ProjectController@delete'])->middleware('auth');
 Route::match(['get', 'post'],'project/{slug}/sponsor', ['as' => 'project.sponsor', 'uses' => 'Project\ProjectController@sponsor'])->middleware('auth');
+Route::match(['get', 'post'],'project/{slug}/join/send', 'Project\ProjectController@sendJoin')->name('project.join.send')->middleware('auth');
+Route::get('project/{slug}/join/cancel', 'Project\ProjectController@cancelJoin')->name('project.join.cancel')->middleware('auth');
+Route::match(['get', 'post'],'project/{slug}/requests', 'Project\ProjectController@manageRequests')->name('project.manageRequests')->middleware('auth');

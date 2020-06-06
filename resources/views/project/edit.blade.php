@@ -46,11 +46,8 @@
 
                                 <div class="col-md-6">
                                     <select id="labels" multiple class="js-labels-multiple form-control @error('labels') is-invalid @enderror" name="labels[]" required autocomplete="labels" autofocus>
-                                        @php
-                                            $selectedLabels = explode(',', $project->labels);
-                                        @endphp
                                         @foreach($labels as $label)
-                                            <option value="{{$label}}" {{ in_array($label, $selectedLabels) ? 'selected' : '' }}>{{$label}}</option>
+                                            <option value="{{$label}}" {{ in_array($label, $project->labels) ? 'selected' : '' }}>{{$label}}</option>
                                         @endforeach
                                     </select>
 
@@ -67,7 +64,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('button.submit.project.update') }}
                                     </button>
-                                    <a href="{{ route('project.show', $project->slug) }}" id="cancel" name="cancel" class="btn btn-default">{{ __('button.cancel') }}</a>
+                                    <a href="{{ route('project.show', $project->slug) }}" id="cancel" class="btn btn-default">{{ __('button.cancel') }}</a>
                                 </div>
                             </div>
                             @if(session('message'))

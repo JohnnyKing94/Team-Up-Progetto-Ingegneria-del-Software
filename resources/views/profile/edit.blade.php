@@ -24,7 +24,7 @@
                                 <div class="col-md-6">
                                     <input id="email" type="email"
                                            class="form-control @error('email') is-invalid @enderror" name="email"
-                                           value="{{ Auth::user()->email }}" required autocomplete="email">
+                                           value="{{ $user->email }}" required autocomplete="email">
 
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -67,7 +67,7 @@
                                 <div class="col-md-6">
                                     <input id="name" type="text"
                                            class="form-control @error('name') is-invalid @enderror" name="name"
-                                           value="{{ Auth::user()->name }}" required autocomplete="name" autofocus>
+                                           value="{{ $user->name }}" required autocomplete="name" autofocus>
 
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -84,7 +84,7 @@
                                 <div class="col-md-6">
                                     <input id="surname" type="text"
                                            class="form-control @error('surname') is-invalid @enderror" name="surname"
-                                           value="{{ Auth::user()->surname }}" required autocomplete="surname" autofocus>
+                                           value="{{ $user->surname }}" required autocomplete="surname" autofocus>
 
                                     @error('surname')
                                     <span class="invalid-feedback" role="alert">
@@ -101,7 +101,7 @@
                                 <div class="col-md-6">
                                     <input id="birthday" max="{{ \Carbon\Carbon::today()->addYear(5)->toDateString() }}" min="{{ \Carbon\Carbon::today()->subYear(110)->toDateString() }}" type="date"
                                            class="form-control @error('birthday') is-invalid @enderror" name="birthday"
-                                           value="{{ Auth::user()->birthday }}" required autocomplete="birthday" autofocus>
+                                           value="{{ $user->birthday }}" required autocomplete="birthday" autofocus>
 
                                     @error('birthday')
                                     <span class="invalid-feedback" role="alert">
@@ -117,9 +117,9 @@
 
                                 <div class="col-md-6">
                                     <select id="gender" class="form-control @error('gender') is-invalid @enderror" name="gender" required autocomplete="gender" autofocus>
-                                        <option value="Maschio" {{ Auth::user()->gender == 'Maschio' ? 'selected' : '' }}>Maschio</option>
-                                        <option value="Femmina" {{ Auth::user()->gender == 'Femmina' ? 'selected' : '' }}>Femmina</option>
-                                        <option value="Non specificato" {{ Auth::user()->gender == 'Non specificato' ? 'selected' : '' }}>Non specificato</option>
+                                        <option value="Maschio" {{ $user->gender == 'Maschio' ? 'selected' : '' }}>Maschio</option>
+                                        <option value="Femmina" {{ $user->gender == 'Femmina' ? 'selected' : '' }}>Femmina</option>
+                                        <option value="Non specificato" {{ $user->gender == 'Non specificato' ? 'selected' : '' }}>Non specificato</option>
                                     </select>
 
                                     @error('gender')
@@ -137,7 +137,7 @@
                                 <div class="col-md-6">
                                 <textarea id="skills" class="form-control @error('skills') is-invalid @enderror"
                                           name="skills" rows="10" required autocomplete="skills"
-                                          autofocus>{{ Auth::user()->skills }}</textarea>
+                                          autofocus>{{ $user->skills }}</textarea>
 
                                     @error('skills')
                                     <span class="invalid-feedback" role="alert">
@@ -154,11 +154,8 @@
                                 <div class="col-md-6">
                                     <select id="interests" multiple class="js-interests-multiple form-control @error('interests') is-invalid @enderror" name="interests[]" required
                                             autocomplete="interests" autofocus>
-                                        @php
-                                            $selectedInterests = explode(',', Auth::user()->interests);
-                                        @endphp
                                         @foreach($interests as $interest)
-                                            <option value="{{$interest}}" {{ in_array($interest, $selectedInterests) ? 'selected' : '' }}>{{$interest}}</option>
+                                            <option value="{{$interest}}" {{ in_array($interest, $user->interests) ? 'selected' : '' }}>{{$interest}}</option>
                                         @endforeach
                                     </select>
                                     @error('interests')
@@ -174,7 +171,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('button.submit.profile.update') }}
                                     </button>
-                                    <a href="{{ url('/') }}" id="cancel" name="cancel" class="btn btn-default">{{ __('button.cancel') }}</a>
+                                    <a href="{{ url('/') }}" id="cancel" class="btn btn-default">{{ __('button.cancel') }}</a>
                                 </div>
                             </div>
                         </form>

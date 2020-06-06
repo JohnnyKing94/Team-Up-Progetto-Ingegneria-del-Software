@@ -17,6 +17,10 @@ return [
             'leader' => 'Leader',
             'teammate' => 'Teammate',
         ],
+        'join' => [
+            'request' => 'Richiesta di partecipazione',
+            'manage' => 'Gestione richieste',
+        ],
         'create' => 'Crea Progetto',
         'edit' => 'Modifica Progetto',
         'show' => 'Pagina riepilogativa',

@@ -17,6 +17,10 @@ return [
             'leader' => 'Leader',
             'teammate' => 'Teammate',
         ],
+        'join' => [
+            'request' => 'Join Request',
+            'manage' => 'Manage Requests',
+        ],
         'create' => 'Create Project',
         'edit' => 'Edit Project',
         'show' => 'Summary Page',

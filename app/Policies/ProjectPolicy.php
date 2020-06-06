@@ -50,6 +50,18 @@ class ProjectPolicy
     }
 
     /**
+     * Determine whether the user can manage the participation requests of the project.
+     *
+     * @param User $user
+     * @param Project $project
+     * @return bool
+     */
+    public function manageRequests(User $user, Project $project)
+    {
+        return $user->id === $project->leader_id;
+    }
+
+    /**
      * Determine whether the user can update the project.
      *
      * @param User $user
