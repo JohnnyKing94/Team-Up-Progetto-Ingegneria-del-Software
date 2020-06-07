@@ -3,8 +3,8 @@
 @section('page_title'){{$project->name}} - {{ __('title.project.show') }}@endsection
 
 @section('content')
-    @can('own', $project)
-        <!-- Modal -->
+    @if ($isLeader)
+        <!-- Modal Delete Project -->
         <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteLabel"
              aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -27,7 +27,32 @@
                 </div>
             </div>
         </div>
-    @endcan
+    @endif
+    @if ($isTeammate)
+        <!-- Modal Leave Project-->
+        <div class="modal fade" id="confirmLeaveModal" tabindex="-1" role="dialog" aria-labelledby="confirmLeaveLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="confirmLeaveLabel">{{ __('page.project.modalLeave.title') }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{ __('page.project.modalLeave.body') }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                                data-dismiss="modal">{{ __('page.project.modalLeave.cancel') }}</button>
+                        <a href="{{ route('project.leave', $project->slug) }}" type="button"
+                           class="btn btn-primary">{{ __('page.project.modalLeave.confirm') }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -81,13 +106,29 @@
                                         @if ($isTeammate or $isLeader)
                                             @if (count($project->userTeam) > 0)
                                                 <h5 class="card-title font-weight-bold text-uppercase">{{ __('page.project.teammates') }}</h5>
-                                                @foreach($project->userTeam as $teammate)
-                                                    <button class="btn btn-light btn-block">{{ $teammate->name }} {{ $teammate->surname }}</button>
-                                                @endforeach
+                                                @if ($isLeader)
+                                                    <form method="POST" action="{{ route('project.removeTeammate', $project->slug) }}">
+                                                        @csrf
+                                                        @endif
+                                                        @foreach($project->userTeam as $teammate)
+                                                            <div class="btn-group mb-2" role="group" style="display: flex; flex: 1;">
+                                                                <button class="btn btn-light btn-block" data-toggle="tooltip" data-placement="right"
+                                                                        title="{{ __('page.project.joinDate') }} {{ \Carbon\Carbon::parse($teammate->pivot->join_date)->locale(Config::get('app.locale'))->formatLocalized('%d/%m/%Y %H:%M:%S') }}">{{ $teammate->name }} {{ $teammate->surname }}
+                                                                    @if ($isLeader)
+                                                                        <button name="removeTeammate" value="{{ $teammate->pivot->identifier }}" type="submit"
+                                                                                class="btn btn-danger"><i
+                                                                                    class="fa fa-times fa-lg" style="color: white;"></i></button>
+                                                                    @endif
+                                                                </button>
+                                                            </div>
+                                                        @endforeach
+                                                        @if ($isLeader)
+                                                    </form>
+                                                @endif
                                             @endif
                                         @endif
                                     </div>
-                                    @can('own', $project)
+                                    @if ($isLeader)
                                         <div class="form-group">
                                             <h5 class="card-title font-weight-bold text-uppercase">{{ __('page.project.services.leader') }}</h5>
                                             <a href="{{ route('project.manageRequests', $project->slug) }}"
@@ -103,13 +144,15 @@
                                                class="btn btn-info btn-lg btn-block{{ $alreadySponsored ? ' disabled' : '' }}">{{ __('button.project.sponsor') }}
                                             </a>
                                         </div>
-                                    @endcan
-                                    <div class="form-group">
-                                        <h5 class="card-title font-weight-bold text-uppercase">{{ __('page.project.services.general') }}</h5>
-                                        <a href=""
-                                           class="btn btn-success btn-lg btn-block">{{ __('button.project.chat') }}
-                                        </a>
-                                    </div>
+                                    @endif
+                                    @if ($isTeammate)
+                                        <div class="form-group">
+                                            <h5 class="card-title font-weight-bold text-uppercase">{{ __('page.project.services.general') }}</h5>
+                                            <button class="btn btn-success btn-lg btn-block">{{ __('button.project.chat') }}</button>
+                                            <button class="btn btn-danger btn-lg btn-block" data-toggle="modal"
+                                                    data-target="#confirmLeaveModal">{{ __('button.project.leave') }}
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>

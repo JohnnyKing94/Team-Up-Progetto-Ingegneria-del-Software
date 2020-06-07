@@ -32,5 +32,6 @@ return [
         'delete' => 'Delete Project',
         'sponsor' => 'Sponsor this project',
         'chat' => 'Chat',
+        'leave' => 'Leave project',
     ],
 ];

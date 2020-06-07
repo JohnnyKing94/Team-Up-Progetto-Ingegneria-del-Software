@@ -10,6 +10,11 @@ return [
         'created' => 'Project created!',
         'updated' => 'Project updated!',
         'deleted' => 'Project deleted!',
+        'leave' => [
+            'asTeammate' => 'You have left the project!',
+            'asLeader' => 'You can\'t leave the project as leader. You can only delete it!'
+        ],
+        'removedTeammate' => 'You have removed successfully a teammate!',
         'sponsor' => [
             'created' => 'Project sponsored! From now on, you can see your project in homepage. The promotion will expire in 30 days.',
             'already' => 'You are already sponsoring this project! The sponsorship will expire the :date',

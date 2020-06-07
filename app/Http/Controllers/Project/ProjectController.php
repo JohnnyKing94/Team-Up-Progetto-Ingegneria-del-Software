@@ -28,6 +28,9 @@ class ProjectController extends Controller
         foreach ($projects->asLeader as $projectAsLeader) {
             $projectAsLeader->labels = Project::spacingLabels($projectAsLeader->labels);
         }
+        foreach ($projects->asTeammate as $projectAsTeammate) {
+            $projectAsTeammate->labels = Project::spacingLabels($projectAsTeammate->labels);
+        }
 
         return view('project.my')->with(['projects' => $projects]);
     }
@@ -145,9 +148,9 @@ class ProjectController extends Controller
 
             if ($sponsor) {
                 $sponsor->delete();
-            } else if ($teams){
+            } else if ($teams) {
                 $teams->delete();
-            } else if ($participationRequests){
+            } else if ($participationRequests) {
                 $participationRequests->delete();
             }
             $project->delete();
@@ -377,9 +380,71 @@ class ProjectController extends Controller
                         return redirect()->route('project.manageRequests', $slug)
                             ->with('message', __('message.project.join.request.declined'));
                     }
+                } else {
+                    return abort(404);
                 }
-            } else {
-                return abort(404);
+            }
+        } else {
+            return abort(404);
+        }
+    }
+
+    public function leave(Request $request)
+    {
+        $id = auth()->user()->id;
+        $slug = $request['slug'];
+        $project = Project::where('slug', $slug)->first();
+
+        if ($project) {
+            // $this->authorize('leave', $project);
+            $isPending = ParticipationRequest::where('teammate_id', $id)->where('project_id', $project->id)->first();
+            $isTeammate = Team::where('teammate_id', $id)->where('project_id', $project->id)->first();
+            $isLeader = Project::where('leader_id', $id)->where('id', $project->id)->first();
+
+
+            if ($request->isMethod('get')) {
+                if ($isPending) {
+                    return abort(404);
+                } else if ($isTeammate) {
+                    $isTeammate->delete();
+                    return redirect()->route('project.show', $slug)
+                        ->with('message', __('message.project.leave.asTeammate'));
+                } else if ($isLeader) {
+                    return redirect()->route('project.show', $slug)
+                        ->with('message', __('message.project.leave.asLeader'));
+                } else {
+                    return view('project.show')->with(['project' => $project]);
+                }
+            }
+        } else {
+            return abort(404);
+        }
+    }
+
+    public function removeTeammate(Request $request)
+    {
+        $slug = $request['slug'];
+        $project = Project::where('slug', $slug)->first();
+
+        if ($project) {
+            $this->authorize('removeTeammate', $project);
+
+            $project = Project::where('id', $project->id)->with('userRequests')->first();
+
+            if ($request->isMethod('get')) {
+                abort(403);
+            }
+            if ($request->isMethod('post')) {
+                $identifier = $request['removeTeammate'];
+                $teammate = Team::where('identifier', $identifier)->first();
+                if ($teammate) {
+                    $teammate->delete();
+
+                    return redirect()->route('project.show', $slug)
+                        ->with('message', __('message.project.removedTeammate'));
+                } else {
+                    return abort(403);
+                }
             }
         } else {
             return abort(404);

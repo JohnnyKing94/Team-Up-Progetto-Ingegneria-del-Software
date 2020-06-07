@@ -10,6 +10,11 @@ return [
         'created' => 'Progetto creato!',
         'updated' => 'Progetto aggiornato!',
         'deleted' => 'Progetto rimosso!',
+        'leave' => [
+            'asTeammate' => 'Hai abbandonato il progetto!',
+            'asLeader' => 'Non puoi abbandonare il progetto da leader. Puoi solo rimuoverlo!'
+        ],
+        'removedTeammate' => 'Hai rimosso con successo un membro!',
         'sponsor' => [
             'created' => 'Progetto sponsorizzato! Ora il tuo progetto apparirà in homepage. La sponsorizzazione scadrà tra 30 giorni.',
             'already' => 'Stai già sponsorizzando questo progetto! La promozione del progetto scadrà il giorno :date',

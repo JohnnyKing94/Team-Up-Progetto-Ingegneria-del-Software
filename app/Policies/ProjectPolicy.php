@@ -86,6 +86,18 @@ class ProjectPolicy
     }
 
     /**
+     * Determine whether the user can delete the user from the project.
+     *
+     * @param User $user
+     * @param Project $project
+     * @return bool
+     */
+    public function removeTeammate(User $user, Project $project)
+    {
+        return $user->id === $project->leader_id;
+    }
+
+    /**
      * Determine whether the user can restore the project.
      *
      * @param User $user

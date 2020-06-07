@@ -22,10 +22,17 @@ return [
             'interests' => 'Questi sono i tuoi interessi',
             'labels' => 'Questi sono le etichette del gruppo',
         ],
+        'joinDate' => 'Entrato nel progetto il ',
         'requests' => '{0}Nessuna richiesta in sospeso!||[1,*]Hai :count richieste in sospeso...',
         'modalRemove' => [
             'title' => 'Conferma rimozione',
             'body' => 'Sei sicuro di voler rimuovere permanentemente questo progetto?',
+            'cancel' => 'Annulla',
+            'confirm' => 'Conferma',
+        ],
+        'modalLeave' => [
+            'title' => 'Conferma abbandono',
+            'body' => 'Sei sicuro di voler abbandonare questo progetto?',
             'cancel' => 'Annulla',
             'confirm' => 'Conferma',
         ],
