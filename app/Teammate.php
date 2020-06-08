@@ -19,7 +19,7 @@ use Illuminate\Support\Str;
  * @mixin Builder
  */
 
-class Team extends Model
+class Teammate extends Model
 {
     public $timestamps = ["join_date"];
     const CREATED_AT = null;
@@ -28,7 +28,7 @@ class Team extends Model
     /**
      * Database for this model
      */
-    protected $table = 'teams';
+    protected $table = 'teammates';
 
     /**
      * The attributes that are mass assignable.

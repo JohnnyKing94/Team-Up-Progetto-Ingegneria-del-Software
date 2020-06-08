@@ -140,6 +140,6 @@ class User extends Authenticatable
      */
     public function asTeammate()
     {
-        return $this->belongsToMany('App\Project', 'teams', 'teammate_id', 'project_id')->withPivot('identifier', 'join_date');
+        return $this->belongsToMany('App\Project', 'teammates', 'teammate_id', 'project_id')->withPivot('identifier', 'join_date');
     }
 }

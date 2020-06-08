@@ -15,7 +15,7 @@
                             <div class="col-md-12 h2 font-weight-bolder">{{$project->name}}</div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-md-6 text-center">{{ __('page.project.join.interests') }}:<br/>{{auth()->user()->interests}}</div>
+                            <div class="col-md-6 text-center">{{ __('page.project.join.interests') }}:<br/>{{$user->interests}}</div>
                             <div class="col-md-6 text-center">{{ __('page.project.join.labels') }}:<br/>{{$project->labels}}</div>
                         </div>
                         <form method="POST" action="{{ route('project.join.send', $project->slug) }}">

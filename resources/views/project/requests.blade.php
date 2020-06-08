@@ -26,7 +26,7 @@
                                     <div class="col-md-12">
                                         <div class="row">
                                             <div class="ml-3 h3 text-uppercase font-weight-bold">
-                                                {{ $userRequest->name }}
+                                                {{ $userRequest->name }} {{ $userRequest->surname }}
                                             </div>
                                             <div class="ml-3 col-form-label">
                                                 {{ $userRequest->interests }}
