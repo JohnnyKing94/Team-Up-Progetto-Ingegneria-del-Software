@@ -14,14 +14,14 @@ use Illuminate\Support\Str;
  * @property int teammate_id;
  * @property int project_id;
  * @property string identifier;
- * @property timestamp join_date;
+ * @property timestamp date;
  * @mixin Collection;
  * @mixin Builder
  */
 
 class Teammate extends Model
 {
-    public $timestamps = ["join_date"];
+    public $timestamps = ["date"];
     const CREATED_AT = null;
     const UPDATED_AT = null;
 
@@ -39,7 +39,7 @@ class Teammate extends Model
         'teammate_id',
         'project_id',
         'identifier',
-        'join_date'
+        'date'
     ];
 
     /**

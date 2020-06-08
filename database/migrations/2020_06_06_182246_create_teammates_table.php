@@ -18,7 +18,7 @@ class CreateTeammatesTable extends Migration
             $table->foreignId('teammate_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('project_id')->references('id')->on('projects')->onDelete('cascade')->onUpdate('cascade');
             $table->string('identifier');
-            $table->timestamp('join_date');
+            $table->timestamp('date');
         });
     }
 

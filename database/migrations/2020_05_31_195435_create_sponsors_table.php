@@ -18,7 +18,7 @@ class CreateSponsorsTable extends Migration
             $table->foreignId('project_id')->references('id')->on('projects')->onDelete('cascade')->onUpdate('cascade');
             $table->string('title');
             $table->text('description');
-            $table->timestamps();
+            $table->timestamp('date');
         });
     }
 

@@ -74,7 +74,7 @@
                                 @if ($alreadySponsored)
                                     @can('own', $project)
                                         <div class="alert alert-danger" role="alert">
-                                            {{ __('message.project.sponsor.expirationDate', ['date' => $expirationDate]) }}
+                                            {{ __('message.project.sponsor.expirationDate', ['date' => \Carbon\Carbon::parse($expirationDate)->locale(Config::get('app.locale'))->addDays(30)->formatLocalized('%d/%m/%Y %H:%M:%S')]) }}
                                         </div>
                                     @endcan
                                     <div class="alert alert-info text-justify" role="alert">
@@ -113,7 +113,7 @@
                                                         @foreach($project->userTeam as $teammate)
                                                             <div class="btn-group mb-2" role="group" style="display: flex; flex: 1;">
                                                                 <button class="btn btn-light btn-block" data-toggle="tooltip" data-placement="right"
-                                                                        title="{{ __('page.project.joinDate') }} {{ \Carbon\Carbon::parse($teammate->pivot->join_date)->locale(Config::get('app.locale'))->formatLocalized('%d/%m/%Y %H:%M:%S') }}">{{ $teammate->name }} {{ $teammate->surname }}
+                                                                        title="{{ __('page.project.joinDate') }} {{ \Carbon\Carbon::parse($teammate->pivot->date)->locale(Config::get('app.locale'))->formatLocalized('%d/%m/%Y %H:%M:%S') }}">{{ $teammate->name }} {{ $teammate->surname }}
                                                                     @if ($isLeader)
                                                                         <button name="removeTeammate" value="{{ $teammate->pivot->identifier }}" type="submit"
                                                                                 class="btn btn-danger"><i

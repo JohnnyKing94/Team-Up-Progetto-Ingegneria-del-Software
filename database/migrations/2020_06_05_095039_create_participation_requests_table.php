@@ -19,7 +19,7 @@ class CreateParticipationRequestsTable extends Migration
             $table->foreignId('project_id')->references('id')->on('projects')->onDelete('cascade')->onUpdate('cascade');
             $table->text('reason');
             $table->string('identifier');
-            $table->timestamp('created_at');
+            $table->timestamp('date');
         });
     }
 

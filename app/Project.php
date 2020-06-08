@@ -127,7 +127,7 @@ class Project extends Model
      */
     public function userRequests()
     {
-        return $this->belongsToMany('App\User', 'participation_requests', 'project_id', 'teammate_id')->withPivot('reason', 'identifier', 'created_at');
+        return $this->belongsToMany('App\User', 'participation_requests', 'project_id', 'teammate_id')->withPivot('reason', 'identifier', 'date');
     }
 
     /**
@@ -137,7 +137,7 @@ class Project extends Model
      */
     public function userTeam()
     {
-        return $this->belongsToMany('App\User', 'teammates', 'project_id', 'teammate_id')->withPivot('identifier', 'join_date');
+        return $this->belongsToMany('App\User', 'teammates', 'project_id', 'teammate_id')->withPivot('identifier', 'date');
     }
 
 }

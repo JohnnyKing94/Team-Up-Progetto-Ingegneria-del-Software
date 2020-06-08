@@ -15,14 +15,14 @@ use Illuminate\Support\Str;
  * @property int project_id;
  * @property string reason;
  * @property string identifier;
- * @property timestamp created_at;
+ * @property timestamp date;
  * @mixin Collection;
  * @mixin Builder
  */
 
 class ParticipationRequest extends Model
 {
-    public $timestamps = ["created_at"];
+    public $timestamps = ["date"];
     const UPDATED_AT = null;
 
     /**

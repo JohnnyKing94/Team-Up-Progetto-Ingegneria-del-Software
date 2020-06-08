@@ -55,7 +55,7 @@ class ProjectController extends Controller
             $expirationDate = null;
             $alreadySponsored = false;
 
-            $sponsor ? $expirationDate = $sponsor->created_at->addDays(30)->format('d/m/Y - H:i:s') : null;
+            $sponsor ? $expirationDate = $sponsor->date : null;
             $sponsor ? $alreadySponsored = true : false;
 
             return view('project.show')->with(['project' => $project, 'sponsor' => $sponsor,
@@ -145,13 +145,13 @@ class ProjectController extends Controller
             $this->authorize('delete', $project);
 
             $sponsor = Sponsor::where('project_id', $project->id)->first();
-            $teams = Teammate::where('project_id', $project->id)->first();
+            $teammates = Teammate::where('project_id', $project->id)->first();
             $participationRequests = ParticipationRequest::where('project_id', $project->id)->first();
 
             if ($sponsor) {
                 $sponsor->delete();
-            } else if ($teams) {
-                $teams->delete();
+            } else if ($teammates) {
+                $teammates->delete();
             } else if ($participationRequests) {
                 $participationRequests->delete();
             }
@@ -174,7 +174,7 @@ class ProjectController extends Controller
 
             $sponsor = Sponsor::where('project_id', $project->id)->first();
             $expirationDate = null;
-            $sponsor ? $expirationDate = $sponsor->created_at->addDays(30)->format('d/m/Y - H:i:s') : null;
+            $sponsor ? $expirationDate = $sponsor->date : null;
 
             if ($request->isMethod('get')) {
                 if ($sponsor) {
@@ -298,6 +298,7 @@ class ProjectController extends Controller
                     'project_id' => $project->id,
                     'reason' => $request['reason'],
                     'identifier' => ParticipationRequest::createIdentifier(),
+                    'date' => Carbon::now(),
                 ]);
 
                 return redirect()->route('project.show', $slug)
@@ -373,7 +374,7 @@ class ProjectController extends Controller
                             'teammate_id' => $participationRequest->teammate_id,
                             'project_id' => $participationRequest->project_id,
                             'identifier' => Teammate::createIdentifier(),
-                            'join_date' => Carbon::now(),
+                            'date' => Carbon::now(),
                         ]);
 
                         return redirect()->route('project.manageRequests', $slug)

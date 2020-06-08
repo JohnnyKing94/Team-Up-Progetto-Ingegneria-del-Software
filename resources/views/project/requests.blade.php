@@ -32,7 +32,7 @@
                                                 {{ $userRequest->interests }}
                                             </div>
                                             <div class="ml-auto mr-3 col-form-label">
-                                                {{ \Carbon\Carbon::parse($userRequest->pivot->created_at)->locale(Config::get('app.locale'))->formatLocalized('%d/%m/%Y %H:%M:%S') }}
+                                                {{ \Carbon\Carbon::parse($userRequest->pivot->date)->locale(Config::get('app.locale'))->formatLocalized('%d/%m/%Y %H:%M:%S') }}
                                             </div>
                                         </div>
                                     </div>
