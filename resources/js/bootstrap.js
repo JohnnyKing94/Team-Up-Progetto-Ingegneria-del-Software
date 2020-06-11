@@ -23,6 +23,7 @@ try {
 window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.baseURL = (process.env.MIX_APP_ENV === 'local') ? '/' : 'teamup';
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -35,7 +36,7 @@ import Echo from "laravel-echo"
 window.Pusher = require('pusher-js');
 
 window.Echo = new Echo({
-    authEndpoint: 'https://gianfrancomossa.com/teamup-url-anti-tony-dany/broadcasting/auth',
+    authEndpoint: (process.env.MIX_APP_ENV === 'local') ? '/broadcasting/auth' : 'https://gianfrancomossa.com/teamup/broadcasting/auth',
     broadcaster: 'pusher',
     key: process.env.MIX_PUSHER_APP_KEY,
     wsHost: window.location.hostname,
