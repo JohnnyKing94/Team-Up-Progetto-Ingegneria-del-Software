@@ -22,7 +22,7 @@
                                     v-model="newMessage"
                                     type="text"
                                     name="message"
-                                    placeholder="Enter your message..."
+                                    placeholder="Inserisci il tuo messaggio..."
                                     class="form-control input-sm">
                             <div class="input-group-append">
                                 <button @click.prevent="sendMessage" class="btn btn-dark btn-sm" type="button"><i class="fa fa-paper-plane" aria-hidden="true"></i>
@@ -39,7 +39,7 @@
             <div class="card card-default">
                 <div class="card-header">Utenti online</div>
                 <div class="card-body">
-                    <button class="btn btn-secondary btn-block">{{user.name}} {{user.surname}} <i class="fas fa-circle" style="color: #00f500;"></i></button>
+                    <button class="btn btn-secondary btn-block" v-for="(user, index) in users" :key="index">{{user.name}} {{user.surname}} <i class="fas fa-circle" style="color: #00f500;"></i></button>
                 </div>
             </div>
         </div>

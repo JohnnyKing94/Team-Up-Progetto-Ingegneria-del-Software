@@ -69990,7 +69990,7 @@ var render = function() {
                 attrs: {
                   type: "text",
                   name: "message",
-                  placeholder: "Enter your message..."
+                  placeholder: "Inserisci il tuo messaggio..."
                 },
                 domProps: { value: _vm.newMessage },
                 on: {
@@ -70050,17 +70050,24 @@ var render = function() {
       _c("div", { staticClass: "card card-default" }, [
         _c("div", { staticClass: "card-header" }, [_vm._v("Utenti online")]),
         _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _c("button", { staticClass: "btn btn-secondary btn-block" }, [
-            _vm._v(
-              _vm._s(_vm.user.name) + " " + _vm._s(_vm.user.surname) + " "
-            ),
-            _c("i", {
-              staticClass: "fas fa-circle",
-              staticStyle: { color: "#00f500" }
-            })
-          ])
-        ])
+        _c(
+          "div",
+          { staticClass: "card-body" },
+          _vm._l(_vm.users, function(user, index) {
+            return _c(
+              "button",
+              { key: index, staticClass: "btn btn-secondary btn-block" },
+              [
+                _vm._v(_vm._s(user.name) + " " + _vm._s(user.surname) + " "),
+                _c("i", {
+                  staticClass: "fas fa-circle",
+                  staticStyle: { color: "#00f500" }
+                })
+              ]
+            )
+          }),
+          0
+        )
       ])
     ])
   ])
