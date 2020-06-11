@@ -59,6 +59,7 @@
                 messages: [],
                 newMessage: '',
                 users: [],
+                date: '',
                 activeUser: false,
                 typingTimer: false,
             }
@@ -99,7 +100,8 @@
                 this.messages.push({
                     user: this.user,
                     project: this.project,
-                    message: this.newMessage
+                    message: this.newMessage,
+                    date: new Date().toISOString(),
                 });
                 axios.post('/project/' + this.project.slug + '/chat/messages', {
                     project_slug: this.project.slug,

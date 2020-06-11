@@ -1969,6 +1969,7 @@ __webpack_require__.r(__webpack_exports__);
       messages: [],
       newMessage: '',
       users: [],
+      date: '',
       activeUser: false,
       typingTimer: false
     };
@@ -2015,7 +2016,8 @@ __webpack_require__.r(__webpack_exports__);
       this.messages.push({
         user: this.user,
         project: this.project,
-        message: this.newMessage
+        message: this.newMessage,
+        date: new Date().toISOString()
       });
       axios.post('/project/' + this.project.slug + '/chat/messages', {
         project_slug: this.project.slug,
@@ -82471,7 +82473,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
-  authHost: 'https://gianfrancomossa.com/teamup-url-anti-tony-dany/',
+  authEndpoint: 'https://gianfrancomossa.com/teamup-url-anti-tony-dany/broadcasting/auth',
   broadcaster: 'pusher',
   key: "anyKey",
   wsHost: window.location.hostname,
