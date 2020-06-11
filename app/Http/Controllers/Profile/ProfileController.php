@@ -15,7 +15,7 @@ class ProfileController extends Controller
     public function show()
     {
         $userID = Auth::user()->id;
-        $user = User::find($userID)->first();
+        $user = User::find($userID);
         $user->interests = User::spacingInterests($user->interests);
         return view('profile.show')->with(['user' => $user]);
     }
@@ -23,7 +23,7 @@ class ProfileController extends Controller
     public function edit(Request $request)
     {
         $userID = Auth::user()->id;
-        $user = User::find($userID)->first();
+        $user = User::find($userID);
         $user->interests = User::arrayInterests($user->interests);
 
         if ($request->isMethod('get')) {

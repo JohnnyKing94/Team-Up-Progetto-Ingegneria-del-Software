@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Project;
 
+use App\Events\NewMessage;
 use App\Http\Controllers\Controller;
+use App\Message;
 use App\ParticipationRequest;
 use App\Project;
 use App\Sponsor;
@@ -262,7 +264,7 @@ class ProjectController extends Controller
     public function sendJoin(Request $request)
     {
         $userID = auth()->user()->id;
-        $user = User::find($userID)->first();
+        $user = User::find($userID);
         $user->interests = User::spacingInterests($user->interests);
         $slug = $request['slug'];
         $project = Project::where('slug', $slug)->first();
@@ -448,6 +450,83 @@ class ProjectController extends Controller
                         ->with('message', __('message.project.removedTeammate'));
                 } else {
                     return abort(403);
+                }
+            }
+        } else {
+            return abort(404);
+        }
+    }
+
+    public function chat(Request $request)
+    {
+        $userID = auth()->user()->id;
+        $user = User::find($userID);
+        $slug = $request['slug'];
+        $project = Project::where('slug', $slug)->with('userMessages')->first();
+
+        if ($project) {
+            $isPending = ParticipationRequest::where('teammate_id', $userID)->where('project_id', $project->id)->first();
+            $isTeammate = Teammate::where('teammate_id', $userID)->where('project_id', $project->id)->first();
+            $isLeader = Project::where('leader_id', $userID)->where('id', $project->id)->first();
+
+            $project = Project::where('id', $project->id)->with('userTeam')->first();
+            $project->labels = Project::spacingLabels($project->labels);
+
+            if ($request->isMethod('get')) {
+                if ($isTeammate || $isLeader) {
+                    return view('project.chat')->with(['project' => $project, 'user' => $user]);
+                } else if ($isPending) {
+                    return abort(401);
+                } else {
+                    return abort(401);
+                }
+            }
+        } else {
+            return abort(404);
+        }
+    }
+
+    public function message(Request $request)
+    {
+        $userID = auth()->user()->id;
+        $user = User::find($userID);
+        $slug = $request['slug'];
+        $project = Project::where('slug', $slug)->with('userMessages')->first();
+
+        if ($project) {
+            $isPending = ParticipationRequest::where('teammate_id', $userID)->where('project_id', $project->id)->first();
+            $isTeammate = Teammate::where('teammate_id', $userID)->where('project_id', $project->id)->first();
+            $isLeader = Project::where('leader_id', $userID)->where('id', $project->id)->first();
+
+            if ($request->isMethod('get')) {
+                if ($isTeammate || $isLeader) {
+                    return Message::with('user')->where('project_id', $project->id)->get();
+                } else if ($isPending) {
+                    return abort(401);
+                } else {
+                    return abort(401);
+                }
+            }
+            if ($request->isMethod('post')) {
+                if ($isTeammate || $isLeader) {
+                    /*                Validator::make($request->all(), [
+                                        'message' => ['required', 'min:3'],
+                                    ])->validate();*/
+
+                    $message = Message::create([
+                        'user_id' => $user->id,
+                        'project_id' => $project->id,
+                        'message' => $request['message'],
+                        'date' => Carbon::now(),
+                    ]);
+
+                    broadcast(new NewMessage($message->load('user')))->toOthers();
+
+                    return ['status' => 'success'];
+                } else if ($isPending) {
+                    return abort(401);
+                } else {
+                    return abort(401);
                 }
             }
         } else {

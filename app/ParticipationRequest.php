@@ -23,7 +23,9 @@ use Illuminate\Support\Str;
 class ParticipationRequest extends Model
 {
     public $timestamps = ["date"];
+    const CREATED_AT = null;
     const UPDATED_AT = null;
+
 
     /**
      * Database for this model
@@ -40,6 +42,7 @@ class ParticipationRequest extends Model
         'project_id',
         'reason',
         'identifier',
+        'date',
     ];
 
     /**

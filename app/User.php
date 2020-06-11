@@ -142,4 +142,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Project', 'teammates', 'teammate_id', 'project_id')->withPivot('identifier', 'date');
     }
+
+    /**
+     * Create messages relationship between User and Project
+     *
+     * @return BelongsToMany
+     */
+    public function projectMessages()
+    {
+        return $this->belongsToMany('App\Project', 'messages', 'user_id', 'project_id')->withPivot('date');
+    }
 }

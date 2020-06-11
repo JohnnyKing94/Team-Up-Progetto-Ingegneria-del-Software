@@ -36,3 +36,5 @@ Route::get('project/{slug}/join/cancel', 'Project\ProjectController@cancelJoin')
 Route::match(['get', 'post'],'project/{slug}/requests', 'Project\ProjectController@manageRequests')->name('project.manageRequests')->middleware('auth');
 Route::get('project/{slug}/leave', 'Project\ProjectController@leave')->name('project.leave')->middleware('auth');
 Route::match(['get', 'post'],'project/{slug}/teammate/remove', 'Project\ProjectController@removeTeammate')->name('project.removeTeammate')->middleware('auth');
+Route::get('project/{slug}/chat', 'Project\ProjectController@chat')->name('project.chat')->middleware('auth');
+Route::match(['get', 'post'],'project/{slug}/chat/messages', 'Project\ProjectController@message')->name('project.chat.message')->middleware('auth');

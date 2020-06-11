@@ -33,5 +33,6 @@ return [
         'sponsor' => 'Sponsor this project',
         'chat' => 'Chat',
         'leave' => 'Leave project',
+        'back' => 'Back to the project',
     ],
 ];

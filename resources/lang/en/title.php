@@ -25,5 +25,6 @@ return [
         'edit' => 'Edit Project',
         'show' => 'Summary Page',
         'sponsor' => 'Sponsor',
+        'chat' => 'Chat',
     ],
 ];

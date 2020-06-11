@@ -145,12 +145,15 @@
                                             </a>
                                         </div>
                                     @endif
-                                    @if ($isTeammate)
+                                    @if ($isTeammate or $isLeader)
                                         <div class="form-group">
                                             <h5 class="card-title font-weight-bold text-uppercase">{{ __('page.project.services.general') }}</h5>
-                                            <button class="btn btn-success btn-lg btn-block">{{ __('button.project.chat') }}</button>
-                                            <button class="btn btn-danger btn-lg btn-block" data-toggle="modal"
-                                                    data-target="#confirmLeaveModal">{{ __('button.project.leave') }}
+                                            <a href="{{ route('project.chat', $project->slug) }}"
+                                               class="btn btn-success btn-lg btn-block">{{ __('button.project.chat') }}</a>
+                                            @if ($isTeammate)
+                                                <button class="btn btn-danger btn-lg btn-block" data-toggle="modal"
+                                                        data-target="#confirmLeaveModal">{{ __('button.project.leave') }}
+                                            @endif
                                         </div>
                                     @endif
                                 </div>

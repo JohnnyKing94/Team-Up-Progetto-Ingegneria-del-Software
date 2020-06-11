@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 /**
@@ -140,4 +141,22 @@ class Project extends Model
         return $this->belongsToMany('App\User', 'teammates', 'project_id', 'teammate_id')->withPivot('identifier', 'date');
     }
 
+    /**
+     * Create messages relationship between Project and User
+     *
+     * @return BelongsToMany
+     */
+    public function userMessages()
+    {
+        return $this->belongsToMany('App\User', 'messages', 'project_id', 'user_id')->withPivot('date');
+    }
+
+    public function hasUser($user_id)
+    {
+        foreach ($this->userMessages as $user) {
+            if($user->id == $user_id) {
+                return true;
+            }
+        }
+    }
 }
