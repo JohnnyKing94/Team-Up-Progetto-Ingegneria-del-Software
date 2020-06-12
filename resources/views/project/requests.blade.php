@@ -45,9 +45,9 @@
                                         {{ $userRequest->pivot->reason }}
                                     </div>
                                     <div class="col-md-12 mt-3">
-                                        <button name="accept" value="{{ $userRequest->pivot->identifier }}" type="submit"
+                                        <button type="submit" name="accept" value="{{ $userRequest->pivot->identifier }}"
                                                 class="btn btn-success">{{ __('button.submit.project.request.accept') }}</button>
-                                        <button name="decline" value="{{ $userRequest->pivot->identifier }}" type="submit"
+                                        <button type="submit" name="decline" value="{{ $userRequest->pivot->identifier }}"
                                                 class="btn btn-danger">{{ __('button.submit.project.request.decline') }}</button>
                                     </div>
                                 </div>

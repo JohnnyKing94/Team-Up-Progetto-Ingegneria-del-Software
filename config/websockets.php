@@ -27,6 +27,7 @@ return [
             'name' => env('APP_NAME'),
             'key' => env('PUSHER_APP_KEY'),
             'secret' => env('PUSHER_APP_SECRET'),
+            'host' => '127.0.0.1',
             'path' => env('PUSHER_APP_PATH'),
             'capacity' => null,
             'enable_client_messages' => true,

@@ -100,7 +100,7 @@
                                 <div class="ml-3">
                                     <div class="form-group">
                                         <h5 class="card-title font-weight-bold text-uppercase">{{ __('page.project.leader') }}</h5>
-                                        <button class="btn btn-dark btn-block">{{$project->leader->name}} {{$project->leader->surname}}</button>
+                                        <button type="button" class="btn btn-dark btn-block">{{$project->leader->name}} {{$project->leader->surname}}</button>
                                     </div>
                                     <div class="form-group">
                                         @if ($isTeammate or $isLeader)
@@ -112,12 +112,11 @@
                                                         @endif
                                                         @foreach($project->userTeam as $teammate)
                                                             <div class="btn-group mb-2" role="group" style="display: flex; flex: 1;">
-                                                                <button class="btn btn-light btn-block" data-toggle="tooltip" data-placement="right"
+                                                                <button type="button" class="btn btn-light btn-block" data-toggle="tooltip" data-placement="right"
                                                                         title="{{ __('page.project.joinDate') }} {{ \Carbon\Carbon::parse($teammate->pivot->date)->locale(Config::get('app.locale'))->formatLocalized('%d/%m/%Y %H:%M:%S') }}">{{ $teammate->name }} {{ $teammate->surname }}
                                                                     @if ($isLeader)
-                                                                        <button name="removeTeammate" value="{{ $teammate->pivot->identifier }}" type="submit"
-                                                                                class="btn btn-danger"><i
-                                                                                    class="fa fa-times fa-lg" style="color: white;"></i></button>
+                                                                        <button type="submit" name="removeTeammate" value="{{ $teammate->pivot->identifier }}"
+                                                                                class="btn btn-danger"><i class="fa fa-times fa-lg" style="color: white;"></i></button>
                                                                     @endif
                                                                 </button>
                                                             </div>
@@ -137,7 +136,7 @@
                                             <a href="{{ route('project.edit', $project->slug) }}"
                                                class="btn btn-info btn-lg btn-block">{{ __('button.project.edit') }}
                                             </a>
-                                            <button class="btn btn-info btn-lg btn-block" data-toggle="modal"
+                                            <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal"
                                                     data-target="#confirmDeleteModal">{{ __('button.project.delete') }}
                                             </button>
                                             <a href="{{ route('project.sponsor', $project->slug) }}"
@@ -151,7 +150,7 @@
                                             <a href="{{ route('project.chat', $project->slug) }}"
                                                class="btn btn-success btn-lg btn-block">{{ __('button.project.chat') }}</a>
                                             @if ($isTeammate)
-                                                <button class="btn btn-danger btn-lg btn-block" data-toggle="modal"
+                                                <button type="button" class="btn btn-danger btn-lg btn-block" data-toggle="modal"
                                                         data-target="#confirmLeaveModal">{{ __('button.project.leave') }}
                                             @endif
                                         </div>

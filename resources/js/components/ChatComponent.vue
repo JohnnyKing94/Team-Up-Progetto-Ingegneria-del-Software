@@ -25,7 +25,7 @@
                                     placeholder="Inserisci il tuo messaggio..."
                                     class="form-control input-sm">
                             <div class="input-group-append">
-                                <button @click.prevent="sendMessage" class="btn btn-dark btn-sm" type="button"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+                                <button @click.prevent="sendMessage" type="submit" class="btn btn-dark btn-sm"><i class="fa fa-paper-plane" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </div>
