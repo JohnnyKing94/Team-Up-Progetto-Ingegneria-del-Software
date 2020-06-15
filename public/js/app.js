@@ -70018,7 +70018,7 @@ var render = function() {
                   "button",
                   {
                     staticClass: "btn btn-dark btn-sm",
-                    attrs: { type: "button" },
+                    attrs: { type: "submit" },
                     on: {
                       click: function($event) {
                         $event.preventDefault()

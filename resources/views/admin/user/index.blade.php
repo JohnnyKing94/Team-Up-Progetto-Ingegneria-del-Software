@@ -54,7 +54,7 @@
                                             <td>{{$user->email}}</td>
                                             <td class="text-truncate" style="max-width: 200px;">{{$user->skills}}</td>
                                             <td class="text-truncate" style="max-width: 200px;">{{$user->interests}}</td>
-                                            <td><a href="{{ route('admin.user.delete', $user->slug) }}"><i class="far fa-edit"></i></a>
+                                            <td><a href="{{ route('admin.user.edit', $user->slug) }}"><i class="far fa-edit"></i></a>
                                                 <a href="" id="confirmDeleteIcon" data-value="{{ route('admin.user.delete', $user->slug) }}"
                                                    data-toggle="modal"
                                                    data-target="#confirmDeleteModal"><i class="fas fa-times"></i></a></td>
