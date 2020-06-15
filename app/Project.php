@@ -66,7 +66,7 @@ class Project extends Model
      *
      * @return string
      */
-    protected static function createSlugCode()
+    public static function createSlugCode()
     {
         $exists = true;
         while ($exists) {
@@ -84,7 +84,7 @@ class Project extends Model
      *
      * @return array
      */
-    protected static function getLabels()
+    public static function getLabels()
     {
         return self::$labelsList;
     }
@@ -95,7 +95,7 @@ class Project extends Model
      * @param $labels
      * @return string
      */
-    protected static function spacingLabels($labels)
+    public static function spacingLabels($labels)
     {
         return str_replace(',', ', ', $labels);
     }
@@ -106,7 +106,7 @@ class Project extends Model
      * @param $labels
      * @return array
      */
-    protected static function arrayLabels($labels)
+    public static function arrayLabels($labels)
     {
         return explode(',', $labels);
     }

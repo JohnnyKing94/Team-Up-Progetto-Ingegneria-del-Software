@@ -46,10 +46,6 @@ class ProjectController extends Controller
         $project = Project::where('slug', $slug)->first();
 
         if ($project) {
-            $isPending = ParticipationRequest::where('teammate_id', $userID)->where('project_id', $project->id)->first();
-            $isTeammate = Teammate::where('teammate_id', $userID)->where('project_id', $project->id)->first();
-            $isLeader = Project::where('leader_id', $userID)->where('id', $project->id)->first();
-
             $project = Project::where('id', $project->id)->with('userTeam')->first();
             $project->labels = Project::spacingLabels($project->labels);
             $sponsor = Sponsor::where('project_id', $project->id)->first();
@@ -62,7 +58,7 @@ class ProjectController extends Controller
 
             return view('project.show')->with(['project' => $project, 'sponsor' => $sponsor,
                 'alreadySponsored' => $alreadySponsored, 'expirationDate' => $expirationDate,
-                'isPending' => $isPending, 'isTeammate' => $isTeammate, 'isLeader' => $isLeader]);
+                'isPending' => User::isPending($userID, $project), 'isTeammate' => User::isTeammate($userID, $project), 'isLeader' => User::isLeader($userID, $project), 'isAdmin' => User::isAdmin($userID),]);
         } else {
             return abort(404);
         }
@@ -84,7 +80,7 @@ class ProjectController extends Controller
             $slugCode = Project::createSlugCode();
             $slug = $slugName . "-" . $slugCode;
 
-            Project::create([
+            (new Project)->create([
                 'name' => $request['name'],
                 'description' => $request['description'],
                 'labels' => implode(',', $request['labels']),
@@ -104,7 +100,7 @@ class ProjectController extends Controller
         $project->labels = Project::arrayLabels($project->labels);
 
         if ($project) {
-            $this->authorize('sponsor', $project);
+            $this->authorize('edit', $project);
 
             if ($request->isMethod('get')) {
                 return view('project.edit')->with(['project' => $project, 'labels' => Project::getLabels()]);
@@ -146,16 +142,19 @@ class ProjectController extends Controller
         if ($project) {
             $this->authorize('delete', $project);
 
-            $sponsor = Sponsor::where('project_id', $project->id)->first();
-            $teammates = Teammate::where('project_id', $project->id)->first();
-            $participationRequests = ParticipationRequest::where('project_id', $project->id)->first();
+            $sponsor = Sponsor::where('project_id', $project->id);
+            $teammates = Teammate::where('project_id', $project->id);
+            $participationRequests = ParticipationRequest::where('project_id', $project->id);
+            $messages = Message::where('project_id', $project->id);
 
-            if ($sponsor) {
+            if ($sponsor->exists()) {
                 $sponsor->delete();
-            } else if ($teammates) {
+            } else if ($teammates->exists()) {
                 $teammates->delete();
-            } else if ($participationRequests) {
+            } else if ($participationRequests->exists()) {
                 $participationRequests->delete();
+            } else if ($messages->exists()) {
+                $messages->delete();
             }
             $project->delete();
 
@@ -196,6 +195,7 @@ class ProjectController extends Controller
                     'project_id' => $project->id,
                     'title' => $request['title'],
                     'description' => $request['description'],
+                    'date' => Carbon::now(),
                 ]);
 
                 return redirect()->route('project.show', $slug)
@@ -272,18 +272,15 @@ class ProjectController extends Controller
         if ($project) {
             $project->labels = Project::spacingLabels($project->labels);
             // $this->authorize('join', $project);
-            $isPending = ParticipationRequest::where('teammate_id', $userID)->where('project_id', $project->id)->first();
-            $isTeammate = Teammate::where('teammate_id', $userID)->where('project_id', $project->id)->first();
-            $isLeader = Project::where('leader_id', $userID)->where('id', $project->id)->first();
 
             if ($request->isMethod('get')) {
-                if ($isPending) {
+                if (User::isPending($userID, $project)) {
                     return redirect()->route('project.show', $slug)
                         ->with('message', __('message.project.join.already.requested'));
-                } else if ($isTeammate) {
+                } else if (User::isTeammate($userID, $project)) {
                     return redirect()->route('project.show', $slug)
                         ->with('message', __('message.project.join.already.member'));
-                } else if ($isLeader) {
+                } else if (User::isLeader($userID, $project)) {
                     return redirect()->route('project.show', $slug)
                         ->with('message', __('message.project.join.already.leader'));
                 } else {
@@ -295,7 +292,7 @@ class ProjectController extends Controller
                     'reason' => ['required', 'string', 'min:10'],
                 ])->validate();
 
-                ParticipationRequest::create([
+                (new ParticipationRequest)->create([
                     'teammate_id' => auth()->user()->id,
                     'project_id' => $project->id,
                     'reason' => $request['reason'],
@@ -319,20 +316,16 @@ class ProjectController extends Controller
 
         if ($project) {
             // $this->authorize('cancelJoin', $project);
-            $isPending = ParticipationRequest::where('teammate_id', $userID)->where('project_id', $project->id)->first();
-            $isTeammate = Teammate::where('teammate_id', $userID)->where('project_id', $project->id)->first();
-            $isLeader = Project::where('leader_id', $userID)->where('id', $project->id)->first();
-
 
             if ($request->isMethod('get')) {
-                if ($isPending) {
-                    $isPending->delete();
+                if (User::isPending($userID, $project)) {
+                    ParticipationRequest::where('teammate_id', $userID)->where('project_id', $project->id)->delete();
                     return redirect()->route('project.show', $slug)
                         ->with('message', __('message.project.join.canceled'));
-                } else if ($isTeammate || $isLeader) {
+                } else if (User::isTeammate($userID, $project) || User::isLeader($userID, $project)) {
                     return abort(404);
                 } else {
-                    return view('project.show')->with(['project' => $project]);
+                    return redirect()->route('project.show', $slug);
                 }
             }
         } else {
@@ -372,7 +365,7 @@ class ProjectController extends Controller
                 if ($participationRequest) {
                     if ($request->has('accept')) {
                         $participationRequest->delete();
-                        Teammate::create([
+                        (new Teammate)->create([
                             'teammate_id' => $participationRequest->teammate_id,
                             'project_id' => $participationRequest->project_id,
                             'identifier' => Teammate::createIdentifier(),
@@ -405,23 +398,19 @@ class ProjectController extends Controller
 
         if ($project) {
             // $this->authorize('leave', $project);
-            $isPending = ParticipationRequest::where('teammate_id', $userID)->where('project_id', $project->id)->first();
-            $isTeammate = Teammate::where('teammate_id', $userID)->where('project_id', $project->id)->first();
-            $isLeader = Project::where('leader_id', $userID)->where('id', $project->id)->first();
-
 
             if ($request->isMethod('get')) {
-                if ($isPending) {
+                if (User::isPending($userID, $project)) {
                     return abort(404);
-                } else if ($isTeammate) {
-                    $isTeammate->delete();
+                } else if (User::isTeammate($userID, $project)) {
+                    Teammate::where('teammate_id', $userID)->where('project_id', $project->id)->delete();
                     return redirect()->route('project.show', $slug)
                         ->with('message', __('message.project.leave.asTeammate'));
-                } else if ($isLeader) {
+                } else if (User::isLeader($userID, $project)) {
                     return redirect()->route('project.show', $slug)
                         ->with('message', __('message.project.leave.asLeader'));
                 } else {
-                    return view('project.show')->with(['project' => $project]);
+                    return redirect()->route('project.show', $slug);
                 }
             }
         } else {
@@ -434,7 +423,7 @@ class ProjectController extends Controller
         $slug = $request['slug'];
         $project = Project::where('slug', $slug)->first();
 
-        if ($project) {
+        if ($project->exists()) {
             $this->authorize('removeTeammate', $project);
 
             if ($request->isMethod('get')) {
@@ -442,8 +431,8 @@ class ProjectController extends Controller
             }
             if ($request->isMethod('post')) {
                 $identifier = $request['removeTeammate'];
-                $teammate = Teammate::where('identifier', $identifier)->first();
-                if ($teammate) {
+                $teammate = Teammate::where('identifier', $identifier);
+                if ($teammate->exists()) {
                     $teammate->delete();
 
                     return redirect()->route('project.show', $slug)
@@ -465,17 +454,13 @@ class ProjectController extends Controller
         $project = Project::where('slug', $slug)->with('userMessages')->first();
 
         if ($project) {
-            $isPending = ParticipationRequest::where('teammate_id', $userID)->where('project_id', $project->id)->first();
-            $isTeammate = Teammate::where('teammate_id', $userID)->where('project_id', $project->id)->first();
-            $isLeader = Project::where('leader_id', $userID)->where('id', $project->id)->first();
-
             $project = Project::where('id', $project->id)->with('userTeam')->first();
             $project->labels = Project::spacingLabels($project->labels);
 
             if ($request->isMethod('get')) {
-                if ($isTeammate || $isLeader) {
+                if (User::isTeammate($userID, $project) || User::isLeader($userID, $project) || User::isAdmin($userID)) {
                     return view('project.chat')->with(['project' => $project, 'user' => $user]);
-                } else if ($isPending) {
+                } else if (User::isPending($userID, $project)) {
                     return abort(401);
                 } else {
                     return abort(401);
@@ -494,21 +479,17 @@ class ProjectController extends Controller
         $project = Project::where('slug', $slug)->with('userMessages')->first();
 
         if ($project) {
-            $isPending = ParticipationRequest::where('teammate_id', $userID)->where('project_id', $project->id)->first();
-            $isTeammate = Teammate::where('teammate_id', $userID)->where('project_id', $project->id)->first();
-            $isLeader = Project::where('leader_id', $userID)->where('id', $project->id)->first();
-
             if ($request->isMethod('get')) {
-                if ($isTeammate || $isLeader) {
+                if (User::isTeammate($userID, $project) || User::isLeader($userID, $project) || User::isAdmin($userID)) {
                     return Message::with('user')->where('project_id', $project->id)->get();
-                } else if ($isPending) {
+                } else if (User::isPending($userID, $project)) {
                     return abort(401);
                 } else {
                     return abort(401);
                 }
             }
             if ($request->isMethod('post')) {
-                if ($isTeammate || $isLeader) {
+                if (User::isTeammate($userID, $project) || User::isLeader($userID, $project) || User::isAdmin($userID)) {
                     /*                Validator::make($request->all(), [
                                         'message' => ['required', 'min:3'],
                                     ])->validate();*/
@@ -523,7 +504,7 @@ class ProjectController extends Controller
                     broadcast(new NewMessage($message->load('user')))->toOthers();
 
                     return ['status' => 'success'];
-                } else if ($isPending) {
+                } else if (User::isPending($userID, $project)) {
                     return abort(401);
                 } else {
                     return abort(401);

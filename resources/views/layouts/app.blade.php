@@ -15,9 +15,9 @@
     <script src="{{ asset('select2/js/select2.min.js') }}" defer></script>
     <script src="{{ asset('select2/js/i18n/it.js') }}" defer></script>
     <script src="{{ asset('js/custom.js') }}"></script>
-    @stack('script')
+@stack('script')
 
-    <!-- Fonts -->
+<!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
@@ -38,7 +38,7 @@
     <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('icon/apple-icon-144x144.png') }}">
     <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('icon/apple-icon-152x152.png') }}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('icon/apple-icon-180x180.png') }}">
-    <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('icon/android-icon-192x192.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('icon/android-icon-192x192.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('icon/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('icon/favicon-96x96.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('icon/favicon-16x16.png') }}">
@@ -77,10 +77,25 @@
                             <a class="nav-link" href="{{ route('project.index') }}">{{ __('menu.project.index') }}</a>
                         </li>
                     </ul>
-            @endguest
+                @endguest
 
             <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
+                @if(Auth::check())
+                    @if (Auth::user()->isAdmin(Auth::user()->id))
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ __('menu.admin.group') }} <span class="caret"></span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="admin_navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('admin.user.index') }}">{{ __('menu.admin.users') }}</a>
+                                </div>
+                            </li>
+                        </ul>
+                    @endif
+                @endif
+                <ul class="navbar-nav">
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">

@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->text('skills');
             $table->text('interests');
             $table->boolean('isAdmin')->default('0');
+            $table->string('slug')->unique();
             $table->rememberToken();
             $table->timestamps();
         });

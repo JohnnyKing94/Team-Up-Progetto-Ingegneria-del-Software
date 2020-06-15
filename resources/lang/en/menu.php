@@ -15,4 +15,7 @@ return [
         'show' => 'Show project',
         'create' => 'Create project',
     ],
+    'admin' => [
+        'users' => 'Users List',
+    ],
 ];

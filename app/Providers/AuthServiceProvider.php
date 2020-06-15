@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Policies\ProjectPolicy;
 use App\Project;
+use App\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -28,6 +29,14 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        /**
+         * Determine whether the user is an admin.
+         *
+         * @param User $user
+         * @return bool
+         */
+        Gate::define('isAdmin',function ($user) {
+            return $user->isAdmin;
+        });
     }
 }

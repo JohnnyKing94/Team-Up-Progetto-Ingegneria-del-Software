@@ -31,4 +31,9 @@ return [
           'reason' => 'Motivo',
         ],
     ],
+    'admin' => [
+        'user' => [
+            'noData' => 'Nessun utente trovato',
+        ],
+    ],
 ];

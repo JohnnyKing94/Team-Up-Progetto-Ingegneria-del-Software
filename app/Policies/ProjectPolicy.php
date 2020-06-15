@@ -35,7 +35,7 @@ class ProjectPolicy
      */
     public function own(User $user, Project $project)
     {
-        return $user->id === $project->leader_id;
+        return $user->id === $project->leader_id  || $user->isAdmin;
     }
 
     /**
@@ -58,7 +58,7 @@ class ProjectPolicy
      */
     public function manageRequests(User $user, Project $project)
     {
-        return $user->id === $project->leader_id;
+        return $user->id === $project->leader_id || $user->isAdmin;
     }
 
     /**
@@ -70,7 +70,7 @@ class ProjectPolicy
      */
     public function edit(User $user, Project $project)
     {
-        return $user->id === $project->leader_id;
+        return $user->id === $project->leader_id || $user->isAdmin;
     }
 
     /**
@@ -82,7 +82,7 @@ class ProjectPolicy
      */
     public function delete(User $user, Project $project)
     {
-        return $user->id === $project->leader_id;
+        return $user->id === $project->leader_id || $user->isAdmin;
     }
 
     /**
@@ -94,7 +94,7 @@ class ProjectPolicy
      */
     public function removeTeammate(User $user, Project $project)
     {
-        return $user->id === $project->leader_id;
+        return $user->id === $project->leader_id || $user->isAdmin;
     }
 
     /**

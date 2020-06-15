@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Str;
 
 /**
  * Class User
@@ -82,11 +83,29 @@ class User extends Authenticatable
     ];
 
     /**
+     * Creates unique user slug
+     *
+     * @return string
+     */
+    public static function createSlugCode()
+    {
+        $exists = true;
+        while ($exists) {
+            $slugCode = Str::random(16);
+            $check = self::where('slug', $slugCode)->first();
+            if(!$check){
+                $exists = false;
+            }
+        }
+        return $slugCode;
+    }
+
+    /**
      * Getter for all defined labels
      *
      * @return array
      */
-    protected static function getInterests()
+    public static function getInterests()
     {
         return self::$interestsList;
     }
@@ -97,7 +116,7 @@ class User extends Authenticatable
      * @param $interests
      * @return string
      */
-    protected static function spacingInterests($interests)
+    public static function spacingInterests($interests)
     {
         return str_replace(',', ', ', $interests);
     }
@@ -108,9 +127,52 @@ class User extends Authenticatable
      * @param $interests
      * @return array
      */
-    protected static function arrayInterests($interests)
+    public static function arrayInterests($interests)
     {
         return explode(',', $interests);
+    }
+
+    /**
+     * Checker if the user is in a pending status on a specific project
+     *
+     * @param $userID
+     * @param $project
+     * @return boolean
+     */
+    public static function isPending($userID, $project) {
+        return ParticipationRequest::where('teammate_id', $userID)->where('project_id', $project->id)->exists();
+    }
+
+    /**
+     * Checker if the user is in a teammate on a specific project
+     *
+     * @param $userID
+     * @param $project
+     * @return boolean
+     */
+    public static function isTeammate($userID, $project) {
+        return Teammate::where('teammate_id', $userID)->where('project_id', $project->id)->exists();
+    }
+
+    /**
+     * Checker if the user is in a leader on a specific project
+     *
+     * @param $userID
+     * @param $project
+     * @return boolean
+     */
+    public static function isLeader($userID, $project) {
+        return Project::where('leader_id', $userID)->where('id', $project->id)->exists();
+    }
+
+    /**
+     * Checker if the user is in an admin
+     *
+     * @param $userID
+     * @return boolean
+     */
+    public static function isAdmin($userID) {
+        return User::where('id', $userID)->where('isAdmin', 1)->exists();
     }
 
     /**

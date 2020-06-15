@@ -38,3 +38,6 @@ Route::get('project/{slug}/leave', 'Project\ProjectController@leave')->name('pro
 Route::match(['get', 'post'],'project/{slug}/teammate/remove', 'Project\ProjectController@removeTeammate')->name('project.removeTeammate')->middleware('auth');
 Route::get('project/{slug}/chat', 'Project\ProjectController@chat')->name('project.chat')->middleware('auth');
 Route::match(['get', 'post'],'project/{slug}/chat/messages', 'Project\ProjectController@message')->name('project.chat.message')->middleware('auth');
+Route::get('admin/users', 'AdminController@index')->name('admin.user.index')->middleware('auth');
+Route::match(['get', 'post'],'admin/{slug}/edit', ['as' => 'admin.user.edit', 'uses' => 'AdminController@edit'])->middleware('auth');
+Route::get('admin/{slug}/delete', ['as' => 'admin.user.delete', 'uses' => 'AdminController@delete'])->middleware('auth');

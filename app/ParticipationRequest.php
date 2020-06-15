@@ -50,7 +50,7 @@ class ParticipationRequest extends Model
      *
      * @return string
      */
-    protected static function createIdentifier()
+    public static function createIdentifier()
     {
         $exists = true;
         while ($exists) {

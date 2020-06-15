@@ -5,6 +5,13 @@ $(document).ready(function (e) {
     });
 });
 
+$(document).ready(function (e) {
+    $(document).on("click", "#confirmRemoveTeammateButton", function (e) {
+        var identifier = $(this).attr('data-value');
+        document.getElementById("confirm").setAttribute("value", identifier);
+    });
+});
+
 $(document).ready(function () {
     $('.js-labels-multiple').select2({
         language: "it",

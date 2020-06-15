@@ -30,6 +30,12 @@ return [
             'cancel' => 'Cancel',
             'confirm' => 'Confirm',
         ],
+        'modalRemoveTeammate' => [
+            'title' => 'Delete confirmation',
+            'body' => 'Are you sure you want to permanently delete this member from project?',
+            'cancel' => 'Cancel',
+            'confirm' => 'Confirm',
+        ],
         'modalLeave' => [
             'title' => 'Leave confirmation',
             'body' => 'Are you sure you want to leave this project?',
@@ -39,6 +45,14 @@ return [
         'manageRequests' => [
             'skills' => 'Skills',
             'reason' => 'Reason',
+        ],
+    ],
+    'admin' => [
+        'modalRemove' => [
+            'title' => 'Delete confirmation',
+            'body' => 'Are you sure you want to permanently delete this user?',
+            'cancel' => 'Cancel',
+            'confirm' => 'Confirm',
         ],
     ],
 ];

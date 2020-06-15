@@ -2,6 +2,7 @@
 
 use App\ParticipationRequest;
 use App\Project;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
@@ -23,11 +24,11 @@ Sala riunioni imbottita? Cucina troppo buia? Il condizionatore d\'aria non sta f
 
 
         $users = [
-            [ 'email' => 'system@email.com', 'password' => Hash::make('password'), 'name' => 'System', 'surname' => 'Administrator', 'birthday' => '1994-11-16', 'gender' => 'Non specificato', 'skills' => '', 'interests' => '', 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'), ],
-            [ 'email' => 'test1@email.com', 'password' => Hash::make('password'), 'name' => 'Gianfranco', 'surname' => 'Mossa', 'birthday' => '1994-11-16', 'gender' => 'Maschio', 'skills' => Str::random(255), 'interests' => 'Svago,Tecnologia,Viaggio,Arte & Disegno,Videogioco', 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'), ],
-            [ 'email' => 'test2@email.com', 'password' => Hash::make('password'), 'name' => 'Francesco', 'surname' => 'Gasbarro', 'birthday' => '1996-12-04', 'gender' => 'Maschio', 'skills' => Str::random(255), 'interests' => 'Svago,Sport,Tecnologia,Politica,Videogioco', 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'), ],
-            [ 'email' => 'test3@email.com', 'password' => Hash::make('password'), 'name' => 'Umberto', 'surname' => 'Messina', 'birthday' => '1996-05-18', 'gender' => 'Maschio', 'skills' => Str::random(255), 'interests' => 'Tecnologia,Medicina,Viaggio,Lettura,Videogioco', 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'), ],
-            [ 'email' => 'test4@email.com', 'password' => Hash::make('password'), 'name' => 'Angelo', 'surname' => 'Minoia', 'birthday' => '1998-12-11', 'gender' => 'Maschio', 'skills' => Str::random(255), 'interests' => 'Sport,Volontariato,Viaggio,Musica', 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'), ],
+            [ 'email' => 'system@email.com', 'password' => Hash::make('password'), 'name' => 'System', 'surname' => 'Administrator', 'birthday' => '1994-11-16', 'gender' => 'Non specificato', 'skills' => '', 'interests' => '', 'isAdmin' => 1, 'slug' => User::createSlugCode(), 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'), ],
+            [ 'email' => 'test1@email.com', 'password' => Hash::make('password'), 'name' => 'Gianfranco', 'surname' => 'Mossa', 'birthday' => '1994-11-16', 'gender' => 'Maschio', 'skills' => Str::random(255), 'interests' => 'Svago,Tecnologia,Viaggio,Arte & Disegno,Videogioco', 'isAdmin' => 0, 'slug' => User::createSlugCode(), 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'), ],
+            [ 'email' => 'test2@email.com', 'password' => Hash::make('password'), 'name' => 'Francesco', 'surname' => 'Gasbarro', 'birthday' => '1996-12-04', 'gender' => 'Maschio', 'skills' => Str::random(255), 'interests' => 'Svago,Sport,Tecnologia,Politica,Videogioco', 'isAdmin' => 0, 'slug' => User::createSlugCode(), 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'), ],
+            [ 'email' => 'test3@email.com', 'password' => Hash::make('password'), 'name' => 'Umberto', 'surname' => 'Messina', 'birthday' => '1996-05-18', 'gender' => 'Maschio', 'skills' => Str::random(255), 'interests' => 'Tecnologia,Medicina,Viaggio,Lettura,Videogioco', 'isAdmin' => 0, 'slug' => User::createSlugCode(), 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'), ],
+            [ 'email' => 'test4@email.com', 'password' => Hash::make('password'), 'name' => 'Angelo', 'surname' => 'Minoia', 'birthday' => '1998-12-11', 'gender' => 'Maschio', 'skills' => Str::random(255), 'interests' => 'Sport,Volontariato,Viaggio,Musica', 'isAdmin' => 0, 'slug' => User::createSlugCode(), 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'), ],
         ];
 
         $projects = [

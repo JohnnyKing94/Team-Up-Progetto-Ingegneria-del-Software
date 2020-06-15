@@ -36,4 +36,7 @@ return [
             ],
         ],
     ],
+    'admin' => [
+        'userDeleted' => 'L\'utente è stato rimosso.'
+    ],
 ];

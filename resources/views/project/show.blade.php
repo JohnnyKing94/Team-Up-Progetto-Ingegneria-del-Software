@@ -3,7 +3,7 @@
 @section('page_title'){{$project->name}} - {{ __('title.project.show') }}@endsection
 
 @section('content')
-    @if ($isLeader)
+    @if ($isLeader or $isAdmin)
         <!-- Modal Delete Project -->
         <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteLabel"
              aria-hidden="true">
@@ -27,6 +27,32 @@
                 </div>
             </div>
         </div>
+        <!-- Modal Remove Teammate from Project -->
+        <form method="POST" action="{{ route('project.removeTeammate', $project->slug) }}">
+            @csrf
+            <div class="modal fade" id="confirmRemoveTeammateModal" tabindex="-1" role="dialog" aria-labelledby="confirmRemoveTeammateLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmDeleteLabel">{{ __('page.project.modalRemoveTeammate.title') }}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            {{ __('page.project.modalRemoveTeammate.body') }}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"
+                                    data-dismiss="modal">{{ __('page.project.modalRemoveTeammate.cancel') }}</button>
+                            <button type="submit" id="confirm" name="removeTeammate" value=""
+                                    class="btn btn-primary">{{ __('page.project.modalRemoveTeammate.confirm') }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     @endif
     @if ($isTeammate)
         <!-- Modal Leave Project-->
@@ -103,31 +129,25 @@
                                         <button type="button" class="btn btn-dark btn-block">{{$project->leader->name}} {{$project->leader->surname}}</button>
                                     </div>
                                     <div class="form-group">
-                                        @if ($isTeammate or $isLeader)
+                                        @if ($isTeammate or $isLeader or $isAdmin)
                                             @if (count($project->userTeam) > 0)
                                                 <h5 class="card-title font-weight-bold text-uppercase">{{ __('page.project.teammates') }}</h5>
-                                                @if ($isLeader)
-                                                    <form method="POST" action="{{ route('project.removeTeammate', $project->slug) }}">
-                                                        @csrf
-                                                        @endif
-                                                        @foreach($project->userTeam as $teammate)
-                                                            <div class="btn-group mb-2" role="group" style="display: flex; flex: 1;">
-                                                                <button type="button" class="btn btn-light btn-block" data-toggle="tooltip" data-placement="right"
-                                                                        title="{{ __('page.project.joinDate') }} {{ \Carbon\Carbon::parse($teammate->pivot->date)->locale(Config::get('app.locale'))->formatLocalized('%d/%m/%Y %H:%M:%S') }}">{{ $teammate->name }} {{ $teammate->surname }}
-                                                                    @if ($isLeader)
-                                                                        <button type="submit" name="removeTeammate" value="{{ $teammate->pivot->identifier }}"
-                                                                                class="btn btn-danger"><i class="fa fa-times fa-lg" style="color: white;"></i></button>
-                                                                    @endif
-                                                                </button>
-                                                            </div>
-                                                        @endforeach
-                                                        @if ($isLeader)
-                                                    </form>
-                                                @endif
+                                                @foreach($project->userTeam as $teammate)
+                                                    <div class="btn-group mb-2" role="group" style="display: flex; flex: 1;">
+                                                        <button type="button" class="btn btn-light btn-block" data-toggle="tooltip" data-placement="right"
+                                                                title="{{ __('page.project.joinDate') }} {{ \Carbon\Carbon::parse($teammate->pivot->date)->locale(Config::get('app.locale'))->formatLocalized('%d/%m/%Y %H:%M:%S') }}">{{ $teammate->name }} {{ $teammate->surname }}
+                                                            @if ($isLeader or $isAdmin)
+                                                                <button type="button" id="confirmRemoveTeammateButton" data-toggle="modal" data-target="#confirmRemoveTeammateModal"
+                                                                        data-value="{{ $teammate->pivot->identifier }}"
+                                                                        class="btn btn-danger"><i class="fa fa-times fa-lg" style="color: white;"></i></button>
+                                                            @endif
+                                                        </button>
+                                                    </div>
+                                                @endforeach
                                             @endif
                                         @endif
                                     </div>
-                                    @if ($isLeader)
+                                    @if ($isLeader or $isAdmin)
                                         <div class="form-group">
                                             <h5 class="card-title font-weight-bold text-uppercase">{{ __('page.project.services.leader') }}</h5>
                                             <a href="{{ route('project.manageRequests', $project->slug) }}"
@@ -144,7 +164,7 @@
                                             </a>
                                         </div>
                                     @endif
-                                    @if ($isTeammate or $isLeader)
+                                    @if ($isTeammate or $isLeader or $isAdmin)
                                         <div class="form-group">
                                             <h5 class="card-title font-weight-bold text-uppercase">{{ __('page.project.services.general') }}</h5>
                                             <a href="{{ route('project.chat', $project->slug) }}"
@@ -158,7 +178,7 @@
                                 </div>
                             </div>
                         </div>
-                        @if (!$isTeammate and !$isLeader)
+                        @if (!$isTeammate and !$isLeader and $isAdmin)
                             <div class="form-group row mb-0">
                                 <div class="col-md-6">
                                     @if (!$isPending)

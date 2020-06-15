@@ -27,4 +27,9 @@ return [
         'sponsor' => 'Sponsor',
         'chat' => 'Chat',
     ],
+    'admin' => [
+        'user' => [
+            'index' => 'Users List',
+        ],
+    ],
 ];
