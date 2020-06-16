@@ -130,6 +130,6 @@ class ProjectPolicy
      */
     public function sponsor(User $user, Project $project)
     {
-        return $user->id === $project->leader_id;
+        return $user->id === $project->leader_id || $user->isAdmin;
     }
 }

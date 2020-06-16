@@ -24,6 +24,7 @@ use Illuminate\Support\Str;
  * @property string skills;
  * @property array interests;
  * @property boolean isAdmin;
+ * @property string slug;
  * @property array $interestsList;
  * @mixin Collection;
  * @mixin Builder
@@ -39,7 +40,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'email', 'password', 'name', 'surname', 'gender', 'birthday', 'skills', 'interests',
+        'email', 'password', 'name', 'surname', 'gender', 'birthday', 'skills', 'interests', 'slug',
     ];
 
     /**

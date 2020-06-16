@@ -104,6 +104,7 @@ class RegisterController extends Controller
             'birthday' => $data['birthday'],
             'skills' =>  $data['skills'],
             'interests' => implode(',',$data['interests']),
+            'slug' => User::createSlugCode(),
         ]);
     }
 }
