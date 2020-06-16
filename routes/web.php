@@ -24,7 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('user/profile', 'Profile\ProfileController@show')->name('profile.show')->middleware('auth');
 Route::match(['get', 'post'],'user/profile/edit', ['as' => 'profile.edit', 'uses' => 'Profile\ProfileController@edit'])->middleware('auth');
 Route::get('project', 'Project\ProjectController@index')->name('project.index')->middleware('auth');
-Route::get('project/search', 'Project\ProjectController@searchProject')->name('project.searchProject')->middleware('auth');
+Route::get('project/search', 'Project\ProjectController@search')->name('project.search')->middleware('auth');
 Route::get('project/my', 'Project\ProjectController@my')->name('project.my')->middleware('auth');
 Route::match(['get', 'post'],'project/create', ['as' => 'project.create', 'uses' => 'Project\ProjectController@create'])->middleware('auth');
 Route::get('project/{slug}', 'Project\ProjectController@show')->name('project.show')->middleware('auth');
@@ -38,6 +38,6 @@ Route::get('project/{slug}/leave', 'Project\ProjectController@leave')->name('pro
 Route::match(['get', 'post'],'project/{slug}/teammate/remove', 'Project\ProjectController@removeTeammate')->name('project.removeTeammate')->middleware('auth');
 Route::get('project/{slug}/chat', 'Project\ProjectController@chat')->name('project.chat')->middleware('auth');
 Route::match(['get', 'post'],'project/{slug}/chat/messages', 'Project\ProjectController@message')->name('project.chat.message')->middleware('auth');
-Route::get('admin/users', 'AdminController@index')->name('admin.user.index')->middleware('auth');
-Route::match(['get', 'post'],'admin/{slug}/edit', ['as' => 'admin.user.edit', 'uses' => 'AdminController@edit'])->middleware('auth');
-Route::get('admin/{slug}/delete', ['as' => 'admin.user.delete', 'uses' => 'AdminController@delete'])->middleware('auth');
+Route::get('admin/users', 'AdminController@indexUsers')->name('admin.user.index')->middleware('auth');
+Route::match(['get', 'post'],'admin/{slug}/edit', ['as' => 'admin.user.edit', 'uses' => 'AdminController@editUser'])->middleware('auth');
+Route::get('admin/{slug}/delete', ['as' => 'admin.user.delete', 'uses' => 'AdminController@deleteUser'])->middleware('auth');

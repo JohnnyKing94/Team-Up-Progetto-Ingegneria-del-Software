@@ -54,7 +54,7 @@
 
             function fetchProject(byName = '', byLabel = '') {
                 $.ajax({
-                    url: "{{ route('project.searchProject') }}",
+                    url: "{{ route('project.search') }}",
                     method: 'GET',
                     data: {byName: byName, byLabel: byLabel},
                     dataType: 'json',

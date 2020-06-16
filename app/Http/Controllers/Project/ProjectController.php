@@ -206,7 +206,7 @@ class ProjectController extends Controller
         }
     }
 
-    public function searchProject(Request $request)
+    public function search(Request $request)
     {
         if ($request->ajax()) {
             $output = '';

@@ -15,7 +15,7 @@ use Illuminate\Validation\Rule;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function indexUsers()
     {
         $this->authorize('isAdmin');
 
@@ -26,7 +26,7 @@ class AdminController extends Controller
         return view('admin.user.index')->with(['users' => $users]);
     }
 
-    public function edit(Request $request)
+    public function editUser(Request $request)
     {
         $this->authorize('isAdmin');
         $slug = $request['slug'];
@@ -87,7 +87,7 @@ class AdminController extends Controller
         }
     }
 
-    public function delete(Request $request)
+    public function deleteUser(Request $request)
     {
         $this->authorize('isAdmin');
         $slug = $request['slug'];
