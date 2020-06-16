@@ -10,7 +10,7 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('teammate_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('project_id')->references('id')->on('projects')->onDelete('cascade')->onUpdate('cascade');
             $table->text('message')->nullable();
             $table->timestamp('date');

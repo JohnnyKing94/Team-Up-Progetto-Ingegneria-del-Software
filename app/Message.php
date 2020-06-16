@@ -2,7 +2,21 @@
 
 namespace App;
 
+use Cassandra\Timestamp;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+
+/**
+ * Class Message
+ * @property int id;
+ * @property int teammate_id;
+ * @property int project_id;
+ * @property string message;
+ * @property timestamp date;
+ * @mixin Collection;
+ * @mixin Builder
+ */
 
 class Message extends Model
 {
@@ -15,7 +29,7 @@ class Message extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'project_id' ,'message', 'date'];
+    protected $fillable = ['teammate_id', 'project_id' ,'message', 'date'];
 
     public function user(){
         return $this->belongsTo(User::class);

@@ -53,18 +53,18 @@ Sala riunioni imbottita? Cucina troppo buia? Il condizionatore d\'aria non sta f
         ];
 
         $participation_requests = [
-            [ 'teammate_id' => '3', 'project_id' => '2', 'reason' => Lipsum::short()->text(2), 'identifier' => ParticipationRequest::createIdentifier(), 'date' => Carbon::now()->format('Y-m-d H:i:s'), ],
-            [ 'teammate_id' => '4', 'project_id' => '2', 'reason' => Lipsum::short()->text(2), 'identifier' => ParticipationRequest::createIdentifier(), 'date' => Carbon::now()->format('Y-m-d H:i:s'), ],
-            [ 'teammate_id' => '5', 'project_id' => '2', 'reason' => Lipsum::short()->text(2), 'identifier' => ParticipationRequest::createIdentifier(), 'date' => Carbon::now()->format('Y-m-d H:i:s'), ],
-            [ 'teammate_id' => '2', 'project_id' => '4', 'reason' => Lipsum::short()->text(2), 'identifier' => ParticipationRequest::createIdentifier(), 'date' => Carbon::now()->format('Y-m-d H:i:s'), ],
-            [ 'teammate_id' => '4', 'project_id' => '4', 'reason' => Lipsum::short()->text(2), 'identifier' => ParticipationRequest::createIdentifier(), 'date' => Carbon::now()->format('Y-m-d H:i:s'), ],
-            [ 'teammate_id' => '5', 'project_id' => '4', 'reason' => Lipsum::short()->text(2), 'identifier' => ParticipationRequest::createIdentifier(), 'date' => Carbon::now()->format('Y-m-d H:i:s'), ],
-            [ 'teammate_id' => '2', 'project_id' => '6', 'reason' => Lipsum::short()->text(2), 'identifier' => ParticipationRequest::createIdentifier(), 'date' => Carbon::now()->format('Y-m-d H:i:s'), ],
-            [ 'teammate_id' => '3', 'project_id' => '6', 'reason' => Lipsum::short()->text(2), 'identifier' => ParticipationRequest::createIdentifier(), 'date' => Carbon::now()->format('Y-m-d H:i:s'), ],
-            [ 'teammate_id' => '5', 'project_id' => '6', 'reason' => Lipsum::short()->text(2), 'identifier' => ParticipationRequest::createIdentifier(), 'date' => Carbon::now()->format('Y-m-d H:i:s'), ],
-            [ 'teammate_id' => '2', 'project_id' => '8', 'reason' => Lipsum::short()->text(2), 'identifier' => ParticipationRequest::createIdentifier(), 'date' => Carbon::now()->format('Y-m-d H:i:s'), ],
-            [ 'teammate_id' => '3', 'project_id' => '8', 'reason' => Lipsum::short()->text(2), 'identifier' => ParticipationRequest::createIdentifier(), 'date' => Carbon::now()->format('Y-m-d H:i:s'), ],
-            [ 'teammate_id' => '4', 'project_id' => '8', 'reason' => Lipsum::short()->text(2), 'identifier' => ParticipationRequest::createIdentifier(), 'date' => Carbon::now()->format('Y-m-d H:i:s'), ],
+            [ 'user_id' => '3', 'project_id' => '2', 'reason' => Lipsum::short()->text(2), 'identifier' => ParticipationRequest::createIdentifier(), 'date' => Carbon::now()->format('Y-m-d H:i:s'), ],
+            [ 'user_id' => '4', 'project_id' => '2', 'reason' => Lipsum::short()->text(2), 'identifier' => ParticipationRequest::createIdentifier(), 'date' => Carbon::now()->format('Y-m-d H:i:s'), ],
+            [ 'user_id' => '5', 'project_id' => '2', 'reason' => Lipsum::short()->text(2), 'identifier' => ParticipationRequest::createIdentifier(), 'date' => Carbon::now()->format('Y-m-d H:i:s'), ],
+            [ 'user_id' => '2', 'project_id' => '4', 'reason' => Lipsum::short()->text(2), 'identifier' => ParticipationRequest::createIdentifier(), 'date' => Carbon::now()->format('Y-m-d H:i:s'), ],
+            [ 'user_id' => '4', 'project_id' => '4', 'reason' => Lipsum::short()->text(2), 'identifier' => ParticipationRequest::createIdentifier(), 'date' => Carbon::now()->format('Y-m-d H:i:s'), ],
+            [ 'user_id' => '5', 'project_id' => '4', 'reason' => Lipsum::short()->text(2), 'identifier' => ParticipationRequest::createIdentifier(), 'date' => Carbon::now()->format('Y-m-d H:i:s'), ],
+            [ 'user_id' => '2', 'project_id' => '6', 'reason' => Lipsum::short()->text(2), 'identifier' => ParticipationRequest::createIdentifier(), 'date' => Carbon::now()->format('Y-m-d H:i:s'), ],
+            [ 'user_id' => '3', 'project_id' => '6', 'reason' => Lipsum::short()->text(2), 'identifier' => ParticipationRequest::createIdentifier(), 'date' => Carbon::now()->format('Y-m-d H:i:s'), ],
+            [ 'user_id' => '5', 'project_id' => '6', 'reason' => Lipsum::short()->text(2), 'identifier' => ParticipationRequest::createIdentifier(), 'date' => Carbon::now()->format('Y-m-d H:i:s'), ],
+            [ 'user_id' => '2', 'project_id' => '8', 'reason' => Lipsum::short()->text(2), 'identifier' => ParticipationRequest::createIdentifier(), 'date' => Carbon::now()->format('Y-m-d H:i:s'), ],
+            [ 'user_id' => '3', 'project_id' => '8', 'reason' => Lipsum::short()->text(2), 'identifier' => ParticipationRequest::createIdentifier(), 'date' => Carbon::now()->format('Y-m-d H:i:s'), ],
+            [ 'user_id' => '4', 'project_id' => '8', 'reason' => Lipsum::short()->text(2), 'identifier' => ParticipationRequest::createIdentifier(), 'date' => Carbon::now()->format('Y-m-d H:i:s'), ],
         ];
 
         $teammates = [

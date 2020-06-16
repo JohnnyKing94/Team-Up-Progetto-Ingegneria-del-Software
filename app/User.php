@@ -141,7 +141,7 @@ class User extends Authenticatable
      * @return boolean
      */
     public static function isPending($userID, $project) {
-        return ParticipationRequest::where('teammate_id', $userID)->where('project_id', $project->id)->exists();
+        return ParticipationRequest::where('user_id', $userID)->where('project_id', $project->id)->exists();
     }
 
     /**
@@ -193,7 +193,7 @@ class User extends Authenticatable
      */
     public function projectRequests()
     {
-        return $this->belongsToMany('App\Project', 'participation_requests', 'teammate_id', 'project_id')->withPivot('reason', 'identifier', 'date');
+        return $this->belongsToMany('App\Project', 'participation_requests', 'user_id', 'project_id')->withPivot('reason', 'identifier', 'date');
     }
 
     /**
@@ -213,6 +213,6 @@ class User extends Authenticatable
      */
     public function projectMessages()
     {
-        return $this->belongsToMany('App\Project', 'messages', 'user_id', 'project_id')->withPivot('date');
+        return $this->belongsToMany('App\Project', 'messages', 'teammate_id', 'project_id')->withPivot('date');
     }
 }

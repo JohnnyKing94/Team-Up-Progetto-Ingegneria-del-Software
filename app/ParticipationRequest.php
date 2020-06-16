@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 /**
  * Class ParticipationRequest
  * @property int id;
- * @property int teammate_id;
+ * @property int user_id;
  * @property int project_id;
  * @property string reason;
  * @property string identifier;
@@ -38,7 +38,7 @@ class ParticipationRequest extends Model
      * @var array
      */
     protected $fillable = [
-        'teammate_id',
+        'user_id',
         'project_id',
         'reason',
         'identifier',

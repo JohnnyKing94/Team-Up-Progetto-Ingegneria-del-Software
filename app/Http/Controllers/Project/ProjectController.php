@@ -293,7 +293,7 @@ class ProjectController extends Controller
                 ])->validate();
 
                 (new ParticipationRequest)->create([
-                    'teammate_id' => auth()->user()->id,
+                    'user_id' => auth()->user()->id,
                     'project_id' => $project->id,
                     'reason' => $request['reason'],
                     'identifier' => ParticipationRequest::createIdentifier(),
@@ -319,7 +319,7 @@ class ProjectController extends Controller
 
             if ($request->isMethod('get')) {
                 if (User::isPending($userID, $project)) {
-                    ParticipationRequest::where('teammate_id', $userID)->where('project_id', $project->id)->delete();
+                    ParticipationRequest::where('user_id', $userID)->where('project_id', $project->id)->delete();
                     return redirect()->route('project.show', $slug)
                         ->with('message', __('message.project.join.canceled'));
                 } else if (User::isTeammate($userID, $project) || User::isLeader($userID, $project)) {
@@ -366,7 +366,7 @@ class ProjectController extends Controller
                     if ($request->has('accept')) {
                         $participationRequest->delete();
                         (new Teammate)->create([
-                            'teammate_id' => $participationRequest->teammate_id,
+                            'teammate_id' => $participationRequest->user_id,
                             'project_id' => $participationRequest->project_id,
                             'identifier' => Teammate::createIdentifier(),
                             'date' => Carbon::now(),
@@ -495,7 +495,7 @@ class ProjectController extends Controller
                                     ])->validate();*/
 
                     $message = Message::create([
-                        'user_id' => $user->id,
+                        'teammate_id' => $user->id,
                         'project_id' => $project->id,
                         'message' => $request['message'],
                         'date' => Carbon::now(),
