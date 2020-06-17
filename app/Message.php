@@ -32,10 +32,10 @@ class Message extends Model
     protected $fillable = ['teammate_id', 'project_id' ,'message', 'date'];
 
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo('App\User', 'teammate_id');
     }
 
     public function project(){
-        return $this->belongsTo(Project::class);
+        return $this->belongsTo('App\User', 'project_id');
     }
 }
