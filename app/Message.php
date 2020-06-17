@@ -36,6 +36,6 @@ class Message extends Model
     }
 
     public function project(){
-        return $this->belongsTo('App\User', 'project_id');
+        return $this->belongsTo('App\Project', 'project_id');
     }
 }

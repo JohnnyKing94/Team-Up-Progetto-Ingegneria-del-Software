@@ -178,19 +178,21 @@
                                 </div>
                             </div>
                         </div>
-                        @if (!$isTeammate and !$isLeader and $isAdmin)
-                            <div class="form-group row mb-0">
-                                <div class="col-md-6">
-                                    @if (!$isPending)
-                                        <a href="{{ route('project.join.send', $project->slug) }}" id="join" name="join"
-                                           class="btn btn-primary">{{ __('button.submit.project.join') }}</a>
-                                    @endif
-                                    @if ($isPending)
-                                        <a href="{{ route('project.join.cancel', $project->slug) }}" id="join" name="join"
-                                           class="btn btn-primary">{{ __('button.submit.project.cancel') }}</a>
-                                    @endif
+                        @if($isAdmin or $isTeammate or $isLeader)
+                            @if (!$isTeammate and !$isLeader)
+                                <div class="form-group row mb-0">
+                                    <div class="col-md-6">
+                                        @if (!$isPending)
+                                            <a href="{{ route('project.join.send', $project->slug) }}" id="join" name="join"
+                                               class="btn btn-primary">{{ __('button.submit.project.join') }}</a>
+                                        @endif
+                                        @if ($isPending)
+                                            <a href="{{ route('project.join.cancel', $project->slug) }}" id="join" name="join"
+                                               class="btn btn-primary">{{ __('button.submit.project.cancel') }}</a>
+                                        @endif
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         @endif
                     </div>
                 </div>
