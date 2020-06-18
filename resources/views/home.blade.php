@@ -19,7 +19,7 @@
                                 {{ session('message') }}
                             </div>
                         @endif
-                        <h1 class="card-title text-center font-weight-bold">Team Up! <i class="fas fa-folder-open"></i>
+                        <h1 class="card-title text-center font-weight-bold">Team Up! <em class="fas fa-folder-open"></em>
                         </h1>
                         <h5 class="text-center"><strong>Team Up!</strong> vuole andare incontro a tutte le persone che hanno dovuto rinunciare o hanno riscontrato difficoltà nel
                             realizzare i loro progetti, cercando di riunire persone con lo stesso obbiettivo o passione in modo tale da potersi aiutare a vicenda.</h5>

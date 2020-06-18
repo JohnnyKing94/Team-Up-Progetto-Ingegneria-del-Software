@@ -24,14 +24,14 @@
                         <div class="form-group">
                             <div class="table-responsive">
                                 <h3 align="center">{{ __('field.project.search.totalData') }}: <span id="total_records"></span></h3>
-                                <table class="table table-striped table-bordered">
+                                <table class="table table-striped table-bordered" summary="Projects List">
                                     <thead class="thead-dark ">
                                     <tr>
                                         <th scope="col">{{ __('page.project.name') }}</th>
                                         <th scope="col">{{ __('page.project.description') }}</th>
                                         <th scope="col">{{ __('page.project.labels') }}</th>
                                         <th scope="col">{{ __('page.project.leader') }}</th>
-                                        <th></th>
+                                        <th scope="col"></th>
                                     </tr>
                                     </thead>
                                     <tbody>

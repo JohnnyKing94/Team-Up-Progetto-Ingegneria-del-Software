@@ -47,7 +47,7 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('field.project.sponsor.package') }}</label>
 
                                 <div class="col-md-6 col-form-label font-weight-bold">
-                                    <div class="h5 d-flex justify-content-end"><i class="fas fa-shopping-cart"></i>&nbsp;5.00€</div>
+                                    <div class="h5 d-flex justify-content-end"><em class="fas fa-shopping-cart"></em>&nbsp;5.00€</div>
 
                                     @error('title')
                                     <span class="invalid-feedback" role="alert">

@@ -139,7 +139,7 @@
                                                             @if ($isLeader or $isAdmin)
                                                                 <button type="button" id="confirmRemoveTeammateButton" data-toggle="modal" data-target="#confirmRemoveTeammateModal"
                                                                         data-value="{{ $teammate->pivot->identifier }}"
-                                                                        class="btn btn-danger"><i class="fa fa-times fa-lg" style="color: white;"></i></button>
+                                                                        class="btn btn-danger"><em class="fa fa-times fa-lg" style="color: white;"></em></button>
                                                             @endif
                                                         </button>
                                                     </div>

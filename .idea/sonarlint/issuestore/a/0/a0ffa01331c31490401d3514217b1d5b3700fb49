@@ -1,0 +1,11 @@
+
+c	php:S1192T"IDefine a constant instead of duplicating this literal "birthday" 3 times.(‹ÿ”üÿÿÿÿ
+\	php:S1192O"GDefine a constant instead of duplicating this literal "string" 6 times.(ƒîĞÓ
+a	php:S1192S"GDefine a constant instead of duplicating this literal "gender" 3 times.(ºÁïœùÿÿÿÿ
+^	php:S1192O"IDefine a constant instead of duplicating this literal "required" 8 times.(ƒîĞÓ
+\	php:S1192U"GDefine a constant instead of duplicating this literal "skills" 3 times.(ìáñÑ
+^	php:S1192P"IDefine a constant instead of duplicating this literal "password" 3 times.( ²ß
+b	php:S1192R"HDefine a constant instead of duplicating this literal "surname" 3 times.(çÚ„™úÿÿÿÿ
+d	php:S11922"JDefine a constant instead of duplicating this literal "interests" 4 times.(ºşÉâùÿÿÿÿ
+[	php:S1192O"FDefine a constant instead of duplicating this literal "email" 4 times.(ƒîĞÓ
+]	php:S1192O"HDefine a constant instead of duplicating this literal "max:255" 3 times.(ƒîĞÓ

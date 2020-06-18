@@ -34,7 +34,7 @@
                             </div>
                         @endif
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered">
+                            <table class="table table-striped table-bordered" summary="Users List">
                                 <thead class="thead-dark ">
                                 <tr>
                                     <th scope="col">{{ __('field.user.name') }}</th>
@@ -54,10 +54,10 @@
                                             <td>{{$user->email}}</td>
                                             <td class="text-truncate" style="max-width: 200px;">{{$user->skills}}</td>
                                             <td class="text-truncate" style="max-width: 200px;">{{$user->interests}}</td>
-                                            <td><a href="{{ route('admin.user.edit', $user->slug) }}"><i class="far fa-edit"></i></a>
+                                            <td><a href="{{ route('admin.user.edit', $user->slug) }}"><em class="far fa-edit"></em></a>
                                                 <a href="" id="confirmDeleteIcon" data-value="{{ route('admin.user.delete', $user->slug) }}"
                                                    data-toggle="modal"
-                                                   data-target="#confirmDeleteModal"><i class="fas fa-times"></i></a></td>
+                                                   data-target="#confirmDeleteModal"><em class="fas fa-times"></em></a></td>
                                         </tr>
                                     @endforeach
                                 @else

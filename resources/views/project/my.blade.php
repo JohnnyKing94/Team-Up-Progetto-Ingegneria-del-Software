@@ -31,7 +31,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ __('title.project.my.leader') }}</h5>
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered">
+                            <table class="table table-striped table-bordered" summary="Projects List as Leader">
                                 <thead class="thead-dark ">
                                 <tr>
                                     <th scope="col">{{ __('page.project.name') }}</th>
@@ -50,13 +50,13 @@
                                                 style="max-width: 300px;">{{$projectAsLeader->description}}</td>
                                             <td>{{$projectAsLeader->labels}}</td>
                                             <td>{{$projectAsLeader->leader->name . ' ' . \Illuminate\Support\Str::limit($projectAsLeader->leader->surname, 1, $end='.')}}</td>
-                                            <td><a href="{{ route('project.show', $projectAsLeader->slug) }}"><i
-                                                            class="far fa-eye"></i></a> <a
-                                                        href="{{ route('project.edit', $projectAsLeader->slug) }}"><i
-                                                            class="far fa-edit"></i></a> <a
+                                            <td><a href="{{ route('project.show', $projectAsLeader->slug) }}"><em
+                                                            class="far fa-eye"></em></a> <a
+                                                        href="{{ route('project.edit', $projectAsLeader->slug) }}"><em
+                                                            class="far fa-edit"></em></a> <a
                                                         href="" id="confirmDeleteIcon" data-value="{{ route('project.delete', $projectAsLeader->slug) }}" data-toggle="modal"
-                                                        data-target="#confirmDeleteModal"><i
-                                                            class="fas fa-times"></i></a></td>
+                                                        data-target="#confirmDeleteModal"><em
+                                                            class="fas fa-times"></em></a></td>
                                         </tr>
                                     @endforeach
                                 @else
@@ -67,7 +67,7 @@
                         </div>
                         <h5 class="card-title">{{ __('title.project.my.teammate') }}</h5>
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered">
+                            <table class="table table-striped table-bordered" summary="Projects List as Teammate">
                                 <thead class="thead-dark ">
                                 <tr>
                                     <th scope="col">{{ __('page.project.name') }}</th>
@@ -86,7 +86,7 @@
                                                 style="max-width: 300px;">{{$projectAsTeammate->description}}</td>
                                             <td>{{$projectAsTeammate->labels}}</td>
                                             <td>{{$projectAsTeammate->leader->name . ' ' . \Illuminate\Support\Str::limit($projectAsTeammate->leader->surname, 1, $end='.')}}</td>
-                                            <td><a href="{{ route('project.show', $projectAsTeammate->slug) }}"><i class="far fa-eye"></i></a></td>
+                                            <td><a href="{{ route('project.show', $projectAsTeammate->slug) }}"><em class="far fa-eye"></em></a></td>
                                         </tr>
                                     @endforeach
                                 @else
