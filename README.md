@@ -116,13 +116,20 @@ php artisan websocket:serve --port 6080
 Per la connessione alla piattaforma, vengono rilasciati di default i seguenti account di testing:
 
 **ADMIN**
+
 system@email.com : password
 
+
 **USER**
+
 test1@email.com : password
+
 test2@email.com : password
+
 test3@email.com : password
+
 test4@email.com : password
+
 
 ### Pagine di download
 
